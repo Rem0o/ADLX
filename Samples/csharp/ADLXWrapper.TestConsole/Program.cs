@@ -139,35 +139,26 @@ namespace ADLXWrapper.TestConsole
                 manual.GetEmptyFanTuningStates(stateListPtr);
                 stateList = ADLX.fanTuningStateListP_Ptr_value(stateListPtr).Using(dispose);
 
-                while (stateList.Size() > 1)
                 {
-                    stateList.Remove_Back();
-                }
-
-                stateList.At(stateList.Begin(), stateTestPtr);
-                {
-                    var state = ADLX.fanTuningStateP_Ptr_value(stateTestPtr).Using(dispose);
-                    state.SetTemperature(50);
-                    /*
-                    var states = Enumerable.Range((int)stateList.Begin(), (int)stateList.Size()).Select( i =>
+                    var states = Enumerable.Range((int)stateList.Begin(), (int)stateList.Size()).Select(i =>
                     {
                         stateList.At((uint)i, stateTestPtr);
                         return ADLX.fanTuningStateP_Ptr_value(stateTestPtr).Using(dispose);
-                    } ).ToList();
-                    */
+                    }).ToList();
+
                     manual.SetFanTuningStates(stateList);
                     for (int v = 20; v <= 100; v += 10)
                     {
-                        //states.ForEach(s => s.SetFanSpeed(v));
-                        state.SetFanSpeed(v);
+                        states.ForEach(s => s.SetFanSpeed(v));
+                        manual.SetFanTuningStates(stateList);
                         Console.WriteLine("Setting speed to " + v + "%");
                         await Task.Delay(1000);
                         metrics.GPUFanSpeed(intPtr);
                         Console.WriteLine($"Fan speed is {ADLX.intP_value(intPtr)}");
                     }
 
-                    //states.ForEach(s => s.SetFanSpeed(50));
-                    state.SetFanSpeed(50);
+                    states.ForEach(s => s.SetFanSpeed(50));
+
                 }
             }
         }
