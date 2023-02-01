@@ -171,9 +171,9 @@
   <ItemGroup>
     <CustomBuild Include="ADLXCSharpBind.i">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper" ADLXCSharpBind.i</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper.Bindings -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper/Bindings" ADLXCSharpBind.i</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename)_wrap.cxx</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper" ADLXCSharpBind.i</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper.Bindings -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper/Bindings" ADLXCSharpBind.i</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename)_wrap.cxx</Outputs>
     </CustomBuild>
   </ItemGroup>
