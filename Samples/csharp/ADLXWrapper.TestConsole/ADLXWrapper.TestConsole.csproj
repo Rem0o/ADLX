@@ -9,7 +9,7 @@
     <ProjectReference Include="..\ADLXWrapper\ADLXWrapper.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+  <Target Name="PostBuild" BeforeTargets="PostBuildEvent">
     <Exec Command="xcopy /Y $(SolutionDir)x64\$(Configuration)\ADLXCSharpBind.dll $(OutDir)" />
   </Target>
 

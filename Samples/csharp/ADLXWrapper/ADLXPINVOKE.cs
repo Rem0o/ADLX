@@ -1519,6 +1519,21 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_doubleP_value")]
   public static extern double doubleP_value(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_boolP")]
+  public static extern global::System.IntPtr new_boolP();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_copy_boolP")]
+  public static extern global::System.IntPtr copy_boolP(bool jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_delete_boolP")]
+  public static extern void delete_boolP(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_boolP_assign")]
+  public static extern void boolP_assign(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_boolP_value")]
+  public static extern bool boolP_value(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_wcharP")]
   public static extern global::System.IntPtr new_wcharP();
 
@@ -1774,6 +1789,36 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_performanceP_Ptr_value")]
   public static extern global::System.IntPtr performanceP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_fanTuningStateListP_Ptr")]
+  public static extern global::System.IntPtr new_fanTuningStateListP_Ptr();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_copy_fanTuningStateListP_Ptr")]
+  public static extern global::System.IntPtr copy_fanTuningStateListP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_delete_fanTuningStateListP_Ptr")]
+  public static extern void delete_fanTuningStateListP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_fanTuningStateListP_Ptr_assign")]
+  public static extern void fanTuningStateListP_Ptr_assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_fanTuningStateListP_Ptr_value")]
+  public static extern global::System.IntPtr fanTuningStateListP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_fanTuningStateP_Ptr")]
+  public static extern global::System.IntPtr new_fanTuningStateP_Ptr();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_copy_fanTuningStateP_Ptr")]
+  public static extern global::System.IntPtr copy_fanTuningStateP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_delete_fanTuningStateP_Ptr")]
+  public static extern void delete_fanTuningStateP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_fanTuningStateP_Ptr_assign")]
+  public static extern void fanTuningStateP_Ptr_assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_fanTuningStateP_Ptr_value")]
+  public static extern global::System.IntPtr fanTuningStateP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_metricsP_Ptr")]
   public static extern global::System.IntPtr new_metricsP_Ptr();
 
@@ -1788,36 +1833,6 @@ class ADLXPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_metricsP_Ptr_value")]
   public static extern global::System.IntPtr metricsP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_charP_Ptr")]
-  public static extern global::System.IntPtr new_charP_Ptr();
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_copy_charP_Ptr")]
-  public static extern global::System.IntPtr copy_charP_Ptr(string jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_delete_charP_Ptr")]
-  public static extern void delete_charP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_charP_Ptr_assign")]
-  public static extern void charP_Ptr_assign(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_charP_Ptr_value")]
-  public static extern string charP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_new_voidP_Ptr")]
-  public static extern global::System.IntPtr new_voidP_Ptr();
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_copy_voidP_Ptr")]
-  public static extern global::System.IntPtr copy_voidP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_delete_voidP_Ptr")]
-  public static extern void delete_voidP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_voidP_Ptr_assign")]
-  public static extern void voidP_Ptr_assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_voidP_Ptr_value")]
-  public static extern global::System.IntPtr voidP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapper_CastManualFanTuning")]
   public static extern global::System.IntPtr CastManualFanTuning(global::System.Runtime.InteropServices.HandleRef jarg1);

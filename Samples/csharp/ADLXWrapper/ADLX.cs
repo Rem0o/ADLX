@@ -99,6 +99,31 @@ public class ADLX {
     return ret;
   }
 
+  public static SWIGTYPE_p_bool new_boolP() {
+    global::System.IntPtr cPtr = ADLXPINVOKE.new_boolP();
+    SWIGTYPE_p_bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_bool(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_bool copy_boolP(bool value) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.copy_boolP(value);
+    SWIGTYPE_p_bool ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_bool(cPtr, false);
+    return ret;
+  }
+
+  public static void delete_boolP(SWIGTYPE_p_bool obj) {
+    ADLXPINVOKE.delete_boolP(SWIGTYPE_p_bool.getCPtr(obj));
+  }
+
+  public static void boolP_assign(SWIGTYPE_p_bool obj, bool value) {
+    ADLXPINVOKE.boolP_assign(SWIGTYPE_p_bool.getCPtr(obj), value);
+  }
+
+  public static bool boolP_value(SWIGTYPE_p_bool obj) {
+    bool ret = ADLXPINVOKE.boolP_value(SWIGTYPE_p_bool.getCPtr(obj));
+    return ret;
+  }
+
   public static SWIGTYPE_p_wchar_t new_wcharP() {
     global::System.IntPtr cPtr = ADLXPINVOKE.new_wcharP();
     SWIGTYPE_p_wchar_t ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_wchar_t(cPtr, false);
@@ -537,6 +562,58 @@ public class ADLX {
     return ret;
   }
 
+  public static SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList new_fanTuningStateListP_Ptr() {
+    global::System.IntPtr cPtr = ADLXPINVOKE.new_fanTuningStateListP_Ptr();
+    SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList copy_fanTuningStateListP_Ptr(IADLXManualFanTuningStateList value) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.copy_fanTuningStateListP_Ptr(IADLXManualFanTuningStateList.getCPtr(value));
+    SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList(cPtr, false);
+    return ret;
+  }
+
+  public static void delete_fanTuningStateListP_Ptr(SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList obj) {
+    ADLXPINVOKE.delete_fanTuningStateListP_Ptr(SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList.getCPtr(obj));
+  }
+
+  public static void fanTuningStateListP_Ptr_assign(SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList obj, IADLXManualFanTuningStateList value) {
+    ADLXPINVOKE.fanTuningStateListP_Ptr_assign(SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList.getCPtr(obj), IADLXManualFanTuningStateList.getCPtr(value));
+  }
+
+  public static IADLXManualFanTuningStateList fanTuningStateListP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList obj) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.fanTuningStateListP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXManualFanTuningStateList.getCPtr(obj));
+    IADLXManualFanTuningStateList ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXManualFanTuningStateList(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_p_adlx__IADLXManualFanTuningState new_fanTuningStateP_Ptr() {
+    global::System.IntPtr cPtr = ADLXPINVOKE.new_fanTuningStateP_Ptr();
+    SWIGTYPE_p_p_adlx__IADLXManualFanTuningState ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXManualFanTuningState(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_p_adlx__IADLXManualFanTuningState copy_fanTuningStateP_Ptr(IADLXManualFanTuningState value) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.copy_fanTuningStateP_Ptr(IADLXManualFanTuningState.getCPtr(value));
+    SWIGTYPE_p_p_adlx__IADLXManualFanTuningState ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXManualFanTuningState(cPtr, false);
+    return ret;
+  }
+
+  public static void delete_fanTuningStateP_Ptr(SWIGTYPE_p_p_adlx__IADLXManualFanTuningState obj) {
+    ADLXPINVOKE.delete_fanTuningStateP_Ptr(SWIGTYPE_p_p_adlx__IADLXManualFanTuningState.getCPtr(obj));
+  }
+
+  public static void fanTuningStateP_Ptr_assign(SWIGTYPE_p_p_adlx__IADLXManualFanTuningState obj, IADLXManualFanTuningState value) {
+    ADLXPINVOKE.fanTuningStateP_Ptr_assign(SWIGTYPE_p_p_adlx__IADLXManualFanTuningState.getCPtr(obj), IADLXManualFanTuningState.getCPtr(value));
+  }
+
+  public static IADLXManualFanTuningState fanTuningStateP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXManualFanTuningState obj) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.fanTuningStateP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXManualFanTuningState.getCPtr(obj));
+    IADLXManualFanTuningState ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXManualFanTuningState(cPtr, false);
+    return ret;
+  }
+
   public static SWIGTYPE_p_p_adlx__IADLXGPUMetrics new_metricsP_Ptr() {
     global::System.IntPtr cPtr = ADLXPINVOKE.new_metricsP_Ptr();
     SWIGTYPE_p_p_adlx__IADLXGPUMetrics ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXGPUMetrics(cPtr, false);
@@ -560,57 +637,6 @@ public class ADLX {
   public static IADLXGPUMetrics metricsP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXGPUMetrics obj) {
     global::System.IntPtr cPtr = ADLXPINVOKE.metricsP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXGPUMetrics.getCPtr(obj));
     IADLXGPUMetrics ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXGPUMetrics(cPtr, false);
-    return ret;
-  }
-
-  public static SWIGTYPE_p_p_char new_charP_Ptr() {
-    global::System.IntPtr cPtr = ADLXPINVOKE.new_charP_Ptr();
-    SWIGTYPE_p_p_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_char(cPtr, false);
-    return ret;
-  }
-
-  public static SWIGTYPE_p_p_char copy_charP_Ptr(string value) {
-    global::System.IntPtr cPtr = ADLXPINVOKE.copy_charP_Ptr(value);
-    SWIGTYPE_p_p_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_char(cPtr, false);
-    return ret;
-  }
-
-  public static void delete_charP_Ptr(SWIGTYPE_p_p_char obj) {
-    ADLXPINVOKE.delete_charP_Ptr(SWIGTYPE_p_p_char.getCPtr(obj));
-  }
-
-  public static void charP_Ptr_assign(SWIGTYPE_p_p_char obj, string value) {
-    ADLXPINVOKE.charP_Ptr_assign(SWIGTYPE_p_p_char.getCPtr(obj), value);
-  }
-
-  public static string charP_Ptr_value(SWIGTYPE_p_p_char obj) {
-    string ret = ADLXPINVOKE.charP_Ptr_value(SWIGTYPE_p_p_char.getCPtr(obj));
-    return ret;
-  }
-
-  public static SWIGTYPE_p_p_void new_voidP_Ptr() {
-    global::System.IntPtr cPtr = ADLXPINVOKE.new_voidP_Ptr();
-    SWIGTYPE_p_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_void(cPtr, false);
-    return ret;
-  }
-
-  public static SWIGTYPE_p_p_void copy_voidP_Ptr(SWIGTYPE_p_void value) {
-    global::System.IntPtr cPtr = ADLXPINVOKE.copy_voidP_Ptr(SWIGTYPE_p_void.getCPtr(value));
-    SWIGTYPE_p_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_void(cPtr, false);
-    return ret;
-  }
-
-  public static void delete_voidP_Ptr(SWIGTYPE_p_p_void obj) {
-    ADLXPINVOKE.delete_voidP_Ptr(SWIGTYPE_p_p_void.getCPtr(obj));
-  }
-
-  public static void voidP_Ptr_assign(SWIGTYPE_p_p_void obj, SWIGTYPE_p_void value) {
-    ADLXPINVOKE.voidP_Ptr_assign(SWIGTYPE_p_p_void.getCPtr(obj), SWIGTYPE_p_void.getCPtr(value));
-  }
-
-  public static SWIGTYPE_p_void voidP_Ptr_value(SWIGTYPE_p_p_void obj) {
-    global::System.IntPtr cPtr = ADLXPINVOKE.voidP_Ptr_value(SWIGTYPE_p_p_void.getCPtr(obj));
-    SWIGTYPE_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_void(cPtr, false);
     return ret;
   }
 

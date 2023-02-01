@@ -123,6 +123,7 @@ using namespace adlx;
 %include cpointer.i
 %pointer_functions(adlx_int, intP);
 %pointer_functions(double, doubleP);
+%pointer_functions(bool, boolP);
 %pointer_functions(WCHAR, wcharP);
 %pointer_functions(adlx_uint, uintP);
 %pointer_functions(ADLX_DISPLAY_TYPE, displayTypeP);
@@ -180,9 +181,9 @@ TYPE2 NAME(TYPE1 x) {
 %ppointer_functions(IADLXGPUTuningServices*, gpuTuningP_Ptr);
 %ppointer_functions(IADLXManualFanTuning*, manualFanTuningP_Ptr);
 %ppointer_functions(IADLXPerformanceMonitoringServices*, performanceP_Ptr);
+%ppointer_functions(IADLXManualFanTuningStateList*, fanTuningStateListP_Ptr);
+%ppointer_functions(IADLXManualFanTuningState*, fanTuningStateP_Ptr);
 %ppointer_functions(IADLXGPUMetrics*, metricsP_Ptr);
-%ppointer_functions(char*, charP_Ptr);
-%ppointer_functions(void*, voidP_Ptr);
 
 
 %pointer_cast(IADLXInterface*, IADLXManualFanTuning*, CastManualFanTuning);

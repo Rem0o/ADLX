@@ -14,19 +14,19 @@ namespace ADLXWrapper.TestConsole
                 return;
             }
 
-            var sys = help.GetSystemServices();
+            var systemServices = help.GetSystemServices();
 
-            var g = ADLX.new_gpuListP_Ptr();
-            if (HasError(sys.GetGPUs(g), "Couldn't get GPU list"))
+            var gpuListPtr = ADLX.new_gpuListP_Ptr();
+            if (HasError(systemServices.GetGPUs(gpuListPtr), "Couldn't get GPU list"))
                 return;
 
-            var gpuList = ADLX.gpuListP_Ptr_value(g);
+            var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr);
 
             var servicePtr = ADLX.new_gpuTuningP_Ptr();
-            if (HasError(sys.GetGPUTuningServices(servicePtr), "Couldn't get GPU tuning"))
+            if (HasError(systemServices.GetGPUTuningServices(servicePtr), "Couldn't get GPU tuning"))
                 return;
 
-            var services = ADLX.gpuTuningP_Ptr_value(servicePtr);
+            var tuningServices = ADLX.gpuTuningP_Ptr_value(servicePtr);
 
             var index = gpuList.Begin();
             var gpuPtr = ADLX.new_gpuP_Ptr();
@@ -36,16 +36,54 @@ namespace ADLXWrapper.TestConsole
             var gpu = ADLX.gpuP_Ptr_value(gpuPtr);
 
             var interfacePtr = ADLX.new_adlxInterfaceP_Ptr();
-            if (HasError(services.GetManualFanTuning(gpu, interfacePtr), "Couldn't get interface"))
+            if (HasError(tuningServices.GetManualFanTuning(gpu, interfacePtr), "Couldn't get interface"))
                 return;
 
-            var manual = ADLX.CastManualFanTuning(ADLX.adlxInterfaceP_Ptr_value(interfacePtr));
+            var @interface = ADLX.adlxInterfaceP_Ptr_value(interfacePtr);
+            var manual = ADLX.CastManualFanTuning(@interface);
 
-            manual.SetTargetFanSpeed(1000);
-            Console.WriteLine("Setting fan speed to 1000 rpm...");
+            var boolPtr = ADLX.new_boolP();
+            if (HasError(manual.IsSupportedTargetFanSpeed(boolPtr), "Could not check for is supported")) 
+                return;
 
+            var isSupported = ADLX.boolP_value(boolPtr);
+
+            Console.WriteLine($"Set target fan speed is supported: {isSupported}");
+
+            if (isSupported)
+            {
+                manual.SetTargetFanSpeed(50);
+                Console.WriteLine("Setting fan speed to 50");
+            }
+
+            var stateListPtre = ADLX.new_fanTuningStateListP_Ptr();
+            manual.GetFanTuningStates(stateListPtre);
+            var stateList = ADLX.fanTuningStateListP_Ptr_value(stateListPtre);
+
+            for( uint i = stateList.Begin(); i < stateList.End(); i++ )
+            {
+                var statePtr = ADLX.new_fanTuningStateP_Ptr();
+                stateList.At(i, statePtr);
+                var state = ADLX.fanTuningStateP_Ptr_value(statePtr);
+
+                state.SetFanSpeed(50);
+                state.Dispose();
+            }
+
+            var errorIndexPtr = ADLX.new_intP();
+            if ( HasError(manual.IsValidFanTuningStates(stateList, errorIndexPtr), "Couldn't validate states" ) )
+            {
+                return;
+            }
+
+            int errorIndex = ADLX.intP_value( errorIndexPtr );
+            Console.WriteLine("States error index is " + errorIndex );
+
+            if (errorIndex == -1 )
+                manual.SetFanTuningStates(stateList);
+            
             var performancePtr = ADLX.new_performanceP_Ptr();
-            if (HasError(sys.GetPerformanceMonitoringServices(performancePtr), "Couldn't get performance monitor"))
+            if (HasError(systemServices.GetPerformanceMonitoringServices(performancePtr), "Couldn't get performance monitor"))
                 return;
 
             var performance = ADLX.performanceP_Ptr_value(performancePtr);
@@ -69,7 +107,17 @@ namespace ADLXWrapper.TestConsole
             var fanSpeed = ADLX.intP_value(intPtr);
             Console.WriteLine($"Fan speed is {fanSpeed}");
 
+            metrics.Dispose();
+            performance.Dispose();
+            stateList.Dispose();
+            manual.Dispose();
+            @interface.Dispose();
+            gpu.Dispose();
+            gpuList.Dispose();
+            tuningServices.Dispose();
+            systemServices.Dispose();
         }
+
         private static bool HasError(ADLX_RESULT result, string message)
         {
             if (result == ADLX_RESULT.ADLX_OK)
