@@ -35,6 +35,7 @@ namespace ADLXWrapper.TestConsole
                 var gpu = ADLX.gpuP_Ptr_value(gpuPtr).Using(dispose);
 
                 var interfacePtr = ADLX.new_adlxInterfaceP_Ptr();
+                
                 if (HasError(tuningServices.GetManualFanTuning(gpu, interfacePtr), "Couldn't get interface"))
                    return;
 
@@ -95,6 +96,12 @@ namespace ADLXWrapper.TestConsole
 
                 var temp = ADLX.doubleP_value(doublePtr);
                 Console.WriteLine($"Temp is {temp}");
+
+                if (HasError(metrics.GPUHotspotTemperature(doublePtr), "Couldn't get hotspot temp"))
+                   return;
+
+                temp = ADLX.doubleP_value(doublePtr);
+                Console.WriteLine($"Hotspot Temp is {temp}");
 
                 var intPtr = ADLX.new_intP();
                 if (HasError(metrics.GPUFanSpeed(intPtr), "Couldn't get fan speed"))
