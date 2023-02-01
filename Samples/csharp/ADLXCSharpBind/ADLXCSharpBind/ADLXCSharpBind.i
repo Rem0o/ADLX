@@ -11,6 +11,14 @@
 #include "../../../../SDK/Include/IDisplays.h"
 #include "../../../../SDK/Include/ISystem.h"
 #include "../../../../SDK/Include/ILog.h"
+#include "../../../../SDK/Include/IGPUTuning.h"
+#include "../../../../SDK/Include/IGPUManualFanTuning.h"
+#include "../../../../SDK/Include/IGPUManualGFXTuning.h"
+#include "../../../../SDK/Include/IGPUManualPowerTuning.h"
+#include "../../../../SDK/Include/IGPUManualVRAMTuning.h"
+#include "../../../../SDK/Include/IGPUPresetTuning.h"
+#include "../../../../SDK/Include/IGPUTuning.h"
+#include "../../../../SDK/Include/IPerformanceMonitoring.h"
 #include "../../../../SDK/ADLXHelper/Windows/Cpp/ADLXHelper.h"
 
 typedef     int64_t             adlx_int64;
@@ -100,6 +108,14 @@ typedef WCHAR TCHAR;
 %include "../../../../SDK/Include/IDisplays.h"
 %include "../../../../SDK/Include/ISystem.h"
 %include "../../../../SDK/Include/ILog.h"
+%include "../../../../SDK/Include/IGPUTuning.h"
+%include "../../../../SDK/Include/IGPUManualFanTuning.h"
+%include "../../../../SDK/Include/IGPUManualGFXTuning.h"
+%include "../../../../SDK/Include/IGPUManualPowerTuning.h"
+%include "../../../../SDK/Include/IGPUManualVRAMTuning.h"
+%include "../../../../SDK/Include/IGPUPresetTuning.h"
+%include "../../../../SDK/Include/IGPUTuning.h"
+%include "../../../../SDK/Include/IPerformanceMonitoring.h"
 %include "../../../../SDK/ADLXHelper/Windows/Cpp/ADLXHelper.h"
 using namespace adlx;
 
@@ -107,6 +123,7 @@ using namespace adlx;
 %include cpointer.i
 %pointer_functions(adlx_int, intP);
 %pointer_functions(double, doubleP);
+%pointer_functions(WCHAR, wcharP);
 %pointer_functions(adlx_uint, uintP);
 %pointer_functions(ADLX_DISPLAY_TYPE, displayTypeP);
 %pointer_functions(ADLX_DISPLAY_CONNECTOR_TYPE, disConnectTypeP);
@@ -156,4 +173,16 @@ TYPE2 NAME(TYPE1 x) {
 %ppointer_functions(IADLXDisplayList*, displayListP_Ptr);
 %ppointer_functions(IADLXDisplay*, displayP_Ptr);
 %ppointer_functions(IADLXDisplayChangedHandling*, displayChangeHandlP_Ptr);
+%ppointer_functions(IADLXGPU*, gpuP_Ptr);
+%ppointer_functions(IADLXGPUList*, gpuListP_Ptr);
+%ppointer_functions(IADLXList*, adlxListP_Ptr);
+%ppointer_functions(IADLXInterface*, adlxInterfaceP_Ptr);
+%ppointer_functions(IADLXGPUTuningServices*, gpuTuningP_Ptr);
+%ppointer_functions(IADLXManualFanTuning*, manualFanTuningP_Ptr);
+%ppointer_functions(IADLXPerformanceMonitoringServices*, performanceP_Ptr);
+%ppointer_functions(IADLXGPUMetrics*, metricsP_Ptr);
 %ppointer_functions(char*, charP_Ptr);
+%ppointer_functions(void*, voidP_Ptr);
+
+
+%pointer_cast(IADLXInterface*, IADLXManualFanTuning*, CastManualFanTuning);

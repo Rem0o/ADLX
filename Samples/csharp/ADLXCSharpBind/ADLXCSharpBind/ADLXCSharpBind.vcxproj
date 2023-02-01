@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -130,10 +130,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)out\*.cs" "$(SolutionDir)\DisplayEvents\DisplayEvents\ADLXDepends" /y
-xcopy "$(ProjectDir)out\*.cs" "$(SolutionDir)\DisplayInfo\DisplayInfo\ADLXDepends" /y</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -153,10 +149,6 @@ xcopy "$(ProjectDir)out\*.cs" "$(SolutionDir)\DisplayInfo\DisplayInfo\ADLXDepend
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy "$(ProjectDir)out\*.cs" "$(SolutionDir)\DisplayEvents\DisplayEvents\ADLXDepends" /y
-xcopy "$(ProjectDir)out\*.cs" "$(SolutionDir)\DisplayInfo\DisplayInfo\ADLXDepends" /y</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\SDK\ADLXHelper\Windows\Cpp\ADLXHelper.h" />
@@ -179,11 +171,9 @@ xcopy "$(ProjectDir)out\*.cs" "$(SolutionDir)\DisplayInfo\DisplayInfo\ADLXDepend
   <ItemGroup>
     <CustomBuild Include="ADLXCSharpBind.i">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">if not exist "$(ProjectDir)out" mkdir "$(ProjectDir)out"
-swig.exe -c++ -csharp -dllimport ADLXCSharpBind -outdir "$(ProjectDir)out" ADLXCSharpBind.i</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper" ADLXCSharpBind.i</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename)_wrap.cxx</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">if not exist "$(ProjectDir)out" mkdir "$(ProjectDir)out"
-swig.exe -c++ -csharp -dllimport ADLXCSharpBind -outdir "$(ProjectDir)out" ADLXCSharpBind.i</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper" ADLXCSharpBind.i</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename)_wrap.cxx</Outputs>
     </CustomBuild>
   </ItemGroup>
