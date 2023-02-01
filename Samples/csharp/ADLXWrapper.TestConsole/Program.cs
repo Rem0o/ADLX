@@ -1,11 +1,13 @@
 ﻿using ADLXWrapper.Bindings;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ADLXWrapper.TestConsole
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             using (var dispose = new CompositeDisposable())
             {    
@@ -49,6 +51,12 @@ namespace ADLXWrapper.TestConsole
                 var isSupported = ADLX.boolP_value(boolPtr);
 
                 Console.WriteLine($"Set target fan speed is supported: {isSupported}");
+
+                var targetFanSpeedPtr = ADLX.new_intP(); 
+                if (HasError(manual.GetTargetFanSpeed(targetFanSpeedPtr), "Could not get target Fan speed" ) )
+                    return;
+
+                Console.WriteLine($"Current target fan speed is: {ADLX.intP_value(targetFanSpeedPtr)}");
 
                 if (isSupported)
                 {
@@ -121,6 +129,24 @@ namespace ADLXWrapper.TestConsole
 
                 if (zeroRPMSupported && HasError(manual.SetZeroRPMState(true), "Coudln't set 0 rpm mode" ) )
                    return;
+
+                Console.WriteLine("Test control loop:");
+                var stateTestPtr = ADLX.new_fanTuningStateP_Ptr();
+                var states = Enumerable.Range((int)stateList.Begin(), (int)stateList.Size()).Select( i =>
+                {
+                    stateList.At((uint)i, stateTestPtr);
+                    return ADLX.fanTuningStateP_Ptr_value(stateTestPtr).Using(dispose);
+                } ).ToList();
+
+                for(int v = 20; v <= 100; v += 10 )
+                {
+                    states.ForEach(s => s.SetFanSpeed(v));
+                    manual.SetFanTuningStates(stateList);
+                    Console.WriteLine("Setting speed to " + v + "%");
+                    await Task.Delay(1000);
+                }
+
+                states.ForEach(s => s.SetFanSpeed(50));
             }
         }
 
