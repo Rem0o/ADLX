@@ -142,8 +142,8 @@ namespace ADLXWrapper.TestConsole
                 Console.WriteLine("States error index is " + errorIndex);
 
                 if (errorIndex == -1)
-                    HasError(manual.SetFanTuningStates(stateList), $"Couldn't set fan speed to {speed}");
-
+                    if (!HasError(manual.SetFanTuningStates(stateList), $"Couldn't set fan speed to {speed}"))
+                        Console.WriteLine($"Setting fan speed: {speed}");
             }
         }
 
