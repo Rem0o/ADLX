@@ -1,7 +1,5 @@
 ﻿using ADLXWrapper.Bindings;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ADLXWrapper.TestConsole
@@ -64,28 +62,27 @@ namespace ADLXWrapper.TestConsole
                     Console.WriteLine("Setting fan speed to 50");
                 }
 
-                var stateListPtr = ADLX.new_fanTuningStateListP_Ptr();
-                manual.GetFanTuningStates(stateListPtr);
-                var stateList = ADLX.fanTuningStateListP_Ptr_value(stateListPtr).Using(dispose);
+                var zeroRpmPtr = ADLX.new_boolP();
+                manual.GetZeroRPMState(zeroRpmPtr);
+                var isZeroRPM = ADLX.boolP_value(zeroRpmPtr);
+                Console.WriteLine("Current zero RPM status: " + isZeroRPM);
 
-                for (uint i = stateList.Begin(); i < stateList.End(); i++)
-                {
-                    var statePtr = ADLX.new_fanTuningStateP_Ptr();
-                    stateList.At(i, statePtr);
-                    var state = ADLX.fanTuningStateP_Ptr_value(statePtr).Using(dispose);
+                manual.IsSupportedZeroRPM(zeroRpmPtr);
+                var zeroRPMSupported = ADLX.boolP_value(zeroRpmPtr);
+                Console.WriteLine($"Zero RPM supported: {zeroRPMSupported}");
 
-                    state.SetFanSpeed(50);
-                }
-
-                var errorIndexPtr = ADLX.new_intP();
-                if (HasError(manual.IsValidFanTuningStates(stateList, errorIndexPtr), "Couldn't validate states"))
+                if (zeroRPMSupported && HasError(manual.SetZeroRPMState(true), "Coudln't set 0 rpm mode"))
                     return;
 
-                int errorIndex = ADLX.intP_value(errorIndexPtr);
-                Console.WriteLine("States error index is " + errorIndex);
+                if (zeroRPMSupported && HasError(manual.SetZeroRPMState(false), "Coudln't reset 0 rpm mode"))
+                    return;
 
-                if (errorIndex == -1)
-                    manual.SetFanTuningStates(stateList);
+                ///  SETTING FAN SPEED
+                for (int v = 0; v < 100; v++)
+                {
+                    SetFanSpeed(manual, v);
+                    await Task.Delay(1500);
+                }
 
                 var performancePtr = ADLX.new_performanceP_Ptr();
                 if (HasError(systemServices.GetPerformanceMonitoringServices(performancePtr), "Couldn't get performance monitor"))
@@ -117,50 +114,35 @@ namespace ADLXWrapper.TestConsole
 
                 var fanSpeed = ADLX.intP_value(intPtr);
                 Console.WriteLine($"Fan speed is {fanSpeed}");
-
-                var zeroRpmPtr = ADLX.new_boolP();
-                manual.GetZeroRPMState(zeroRpmPtr);
-                var isZeroRPM = ADLX.boolP_value(zeroRpmPtr);
-                Console.WriteLine("Current zero RPM status: " + isZeroRPM);
-
-                manual.IsSupportedZeroRPM(zeroRpmPtr);
-                var zeroRPMSupported = ADLX.boolP_value(zeroRpmPtr);
-                Console.WriteLine($"Zero RPM supported: {zeroRPMSupported}");
-
-                if (zeroRPMSupported && HasError(manual.SetZeroRPMState(true), "Coudln't set 0 rpm mode"))
-                    return;
-
-                if (zeroRPMSupported && HasError(manual.SetZeroRPMState(false), "Coudln't reset 0 rpm mode"))
-                    return;
-
-                Console.WriteLine("Test control loop:");
-                var stateTestPtr = ADLX.new_fanTuningStateP_Ptr();
-
-                manual.GetEmptyFanTuningStates(stateListPtr);
-                stateList = ADLX.fanTuningStateListP_Ptr_value(stateListPtr).Using(dispose);
-
-                {
-                    var states = Enumerable.Range((int)stateList.Begin(), (int)stateList.Size()).Select(i =>
-                    {
-                        stateList.At((uint)i, stateTestPtr);
-                        return ADLX.fanTuningStateP_Ptr_value(stateTestPtr).Using(dispose);
-                    }).ToList();
-
-                    manual.SetFanTuningStates(stateList);
-                    for (int v = 20; v <= 100; v += 10)
-                    {
-                        states.ForEach(s => s.SetFanSpeed(v));
-                        manual.SetFanTuningStates(stateList);
-                        Console.WriteLine("Setting speed to " + v + "%");
-                        await Task.Delay(1000);
-                        metrics.GPUFanSpeed(intPtr);
-                        Console.WriteLine($"Fan speed is {ADLX.intP_value(intPtr)}");
-                    }
-
-                    states.ForEach(s => s.SetFanSpeed(50));
-
-                }
             }
+        }
+
+        private static void SetFanSpeed(IADLXManualFanTuning manual, int v)
+        {
+            var stateListPtr = ADLX.new_fanTuningStateListP_Ptr();
+            manual.GetFanTuningStates(stateListPtr);
+            var stateList = ADLX.fanTuningStateListP_Ptr_value(stateListPtr);
+
+            for (uint i = stateList.Begin(); i < stateList.End(); i++)
+            {
+                var statePtr = ADLX.new_fanTuningStateP_Ptr();
+                stateList.At(i, statePtr);
+                var state = ADLX.fanTuningStateP_Ptr_value(statePtr);
+
+                state.SetFanSpeed(v);
+                state.Dispose();
+            }
+
+            var errorIndexPtr = ADLX.new_intP();
+            HasError(manual.IsValidFanTuningStates(stateList, errorIndexPtr), "Couldn't validate states");
+
+            int errorIndex = ADLX.intP_value(errorIndexPtr);
+            Console.WriteLine("States error index is " + errorIndex);
+
+            if (errorIndex == -1)
+                HasError(manual.SetFanTuningStates(stateList), $"Couldn't set fan speed to {v}");
+
+            stateList.Dispose();
         }
 
         private static bool HasError(ADLX_RESULT result, string message)
