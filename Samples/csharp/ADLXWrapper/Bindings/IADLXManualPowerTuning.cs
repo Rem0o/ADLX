@@ -53,8 +53,8 @@ public class IADLXManualPowerTuning : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetPowerLimitRange(SWIGTYPE_p_ADLX_IntRange tuningRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualPowerTuning_GetPowerLimitRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(tuningRange));
+  public virtual ADLX_RESULT GetPowerLimitRange(ADLX_IntRange tuningRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualPowerTuning_GetPowerLimitRange(swigCPtr, ADLX_IntRange.getCPtr(tuningRange));
     return ret;
   }
 
@@ -73,8 +73,8 @@ public class IADLXManualPowerTuning : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetTDCLimitRange(SWIGTYPE_p_ADLX_IntRange tuningRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualPowerTuning_GetTDCLimitRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(tuningRange));
+  public virtual ADLX_RESULT GetTDCLimitRange(ADLX_IntRange tuningRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualPowerTuning_GetTDCLimitRange(swigCPtr, ADLX_IntRange.getCPtr(tuningRange));
     return ret;
   }
 

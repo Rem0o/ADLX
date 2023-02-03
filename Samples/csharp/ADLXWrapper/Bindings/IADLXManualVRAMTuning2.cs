@@ -73,8 +73,8 @@ public class IADLXManualVRAMTuning2 : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetMaxVRAMFrequencyRange(SWIGTYPE_p_ADLX_IntRange tuningRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualVRAMTuning2_GetMaxVRAMFrequencyRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(tuningRange));
+  public virtual ADLX_RESULT GetMaxVRAMFrequencyRange(ADLX_IntRange tuningRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualVRAMTuning2_GetMaxVRAMFrequencyRange(swigCPtr, ADLX_IntRange.getCPtr(tuningRange));
     return ret;
   }
 

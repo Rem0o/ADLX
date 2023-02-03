@@ -53,8 +53,8 @@ public class IADLXManualGraphicsTuning1 : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetGPUTuningRanges(SWIGTYPE_p_ADLX_IntRange frequencyRange, SWIGTYPE_p_ADLX_IntRange voltageRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualGraphicsTuning1_GetGPUTuningRanges(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(frequencyRange), SWIGTYPE_p_ADLX_IntRange.getCPtr(voltageRange));
+  public virtual ADLX_RESULT GetGPUTuningRanges(ADLX_IntRange frequencyRange, ADLX_IntRange voltageRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualGraphicsTuning1_GetGPUTuningRanges(swigCPtr, ADLX_IntRange.getCPtr(frequencyRange), ADLX_IntRange.getCPtr(voltageRange));
     return ret;
   }
 

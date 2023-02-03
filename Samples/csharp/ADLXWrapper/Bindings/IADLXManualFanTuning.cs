@@ -53,8 +53,8 @@ public class IADLXManualFanTuning : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetFanTuningRanges(SWIGTYPE_p_ADLX_IntRange speedRange, SWIGTYPE_p_ADLX_IntRange temperatureRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetFanTuningRanges(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(speedRange), SWIGTYPE_p_ADLX_IntRange.getCPtr(temperatureRange));
+  public virtual ADLX_RESULT GetFanTuningRanges(ADLX_IntRange speedRange, ADLX_IntRange temperatureRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetFanTuningRanges(swigCPtr, ADLX_IntRange.getCPtr(speedRange), ADLX_IntRange.getCPtr(temperatureRange));
     return ret;
   }
 
@@ -98,8 +98,8 @@ public class IADLXManualFanTuning : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetMinAcousticLimitRange(SWIGTYPE_p_ADLX_IntRange tuningRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetMinAcousticLimitRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(tuningRange));
+  public virtual ADLX_RESULT GetMinAcousticLimitRange(ADLX_IntRange tuningRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetMinAcousticLimitRange(swigCPtr, ADLX_IntRange.getCPtr(tuningRange));
     return ret;
   }
 
@@ -118,8 +118,8 @@ public class IADLXManualFanTuning : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetMinFanSpeedRange(SWIGTYPE_p_ADLX_IntRange tuningRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetMinFanSpeedRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(tuningRange));
+  public virtual ADLX_RESULT GetMinFanSpeedRange(ADLX_IntRange tuningRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetMinFanSpeedRange(swigCPtr, ADLX_IntRange.getCPtr(tuningRange));
     return ret;
   }
 
@@ -138,8 +138,8 @@ public class IADLXManualFanTuning : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetTargetFanSpeedRange(SWIGTYPE_p_ADLX_IntRange tuningRange) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetTargetFanSpeedRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(tuningRange));
+  public virtual ADLX_RESULT GetTargetFanSpeedRange(ADLX_IntRange tuningRange) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXManualFanTuning_GetTargetFanSpeedRange(swigCPtr, ADLX_IntRange.getCPtr(tuningRange));
     return ret;
   }
 

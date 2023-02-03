@@ -276,6 +276,33 @@ public class ADLX {
     return ret;
   }
 
+  public static ADLX_IntRange new_adlx_intRangeP() {
+    global::System.IntPtr cPtr = ADLXPINVOKE.new_adlx_intRangeP();
+    ADLX_IntRange ret = (cPtr == global::System.IntPtr.Zero) ? null : new ADLX_IntRange(cPtr, false);
+    return ret;
+  }
+
+  public static ADLX_IntRange copy_adlx_intRangeP(ADLX_IntRange value) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.copy_adlx_intRangeP(ADLX_IntRange.getCPtr(value));
+    ADLX_IntRange ret = (cPtr == global::System.IntPtr.Zero) ? null : new ADLX_IntRange(cPtr, false);
+    if (ADLXPINVOKE.SWIGPendingException.Pending) throw ADLXPINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public static void delete_adlx_intRangeP(ADLX_IntRange obj) {
+    ADLXPINVOKE.delete_adlx_intRangeP(ADLX_IntRange.getCPtr(obj));
+  }
+
+  public static void adlx_intRangeP_assign(ADLX_IntRange obj, ADLX_IntRange value) {
+    ADLXPINVOKE.adlx_intRangeP_assign(ADLX_IntRange.getCPtr(obj), ADLX_IntRange.getCPtr(value));
+    if (ADLXPINVOKE.SWIGPendingException.Pending) throw ADLXPINVOKE.SWIGPendingException.Retrieve();
+  }
+
+  public static ADLX_IntRange adlx_intRangeP_value(ADLX_IntRange obj) {
+    ADLX_IntRange ret = new ADLX_IntRange(ADLXPINVOKE.adlx_intRangeP_value(ADLX_IntRange.getCPtr(obj)), true);
+    return ret;
+  }
+
   public static SWIGTYPE_p_p_adlx__IADLXDisplayServices new_displaySerP_Ptr() {
     global::System.IntPtr cPtr = ADLXPINVOKE.new_displaySerP_Ptr();
     SWIGTYPE_p_p_adlx__IADLXDisplayServices ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXDisplayServices(cPtr, false);

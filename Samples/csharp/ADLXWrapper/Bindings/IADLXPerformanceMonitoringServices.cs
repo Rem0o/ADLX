@@ -53,8 +53,8 @@ public class IADLXPerformanceMonitoringServices : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetSamplingIntervalRange(SWIGTYPE_p_ADLX_IntRange range) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXPerformanceMonitoringServices_GetSamplingIntervalRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(range));
+  public virtual ADLX_RESULT GetSamplingIntervalRange(ADLX_IntRange range) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXPerformanceMonitoringServices_GetSamplingIntervalRange(swigCPtr, ADLX_IntRange.getCPtr(range));
     return ret;
   }
 
@@ -68,8 +68,8 @@ public class IADLXPerformanceMonitoringServices : IADLXInterface {
     return ret;
   }
 
-  public virtual ADLX_RESULT GetMaxPerformanceMetricsHistorySizeRange(SWIGTYPE_p_ADLX_IntRange range) {
-    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXPerformanceMonitoringServices_GetMaxPerformanceMetricsHistorySizeRange(swigCPtr, SWIGTYPE_p_ADLX_IntRange.getCPtr(range));
+  public virtual ADLX_RESULT GetMaxPerformanceMetricsHistorySizeRange(ADLX_IntRange range) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXPerformanceMonitoringServices_GetMaxPerformanceMetricsHistorySizeRange(swigCPtr, ADLX_IntRange.getCPtr(range));
     return ret;
   }
 

@@ -104,6 +104,7 @@ typedef WCHAR TCHAR;
 %include typemaps.i
 
 %include "../../../../SDK/Include/ADLXDefines.h"
+%include "../../../../SDK/Include/ADLXStructures.h"
 %include "../../../../SDK/Include/ICollections.h"
 %include "../../../../SDK/Include/IDisplays.h"
 %include "../../../../SDK/Include/ISystem.h"
@@ -130,6 +131,7 @@ using namespace adlx;
 %pointer_functions(ADLX_DISPLAY_CONNECTOR_TYPE, disConnectTypeP);
 %pointer_functions(ADLX_DISPLAY_SCAN_TYPE, disScanTypeP);
 %pointer_functions(adlx_size, adlx_sizeP);
+%pointer_functions(ADLX_IntRange, adlx_intRangeP);
 
 // T** ppointer
 %define %ppointer_functions(TYPE,NAME)

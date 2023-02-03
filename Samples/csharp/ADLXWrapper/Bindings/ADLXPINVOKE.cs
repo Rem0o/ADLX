@@ -226,6 +226,300 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_IADLXInterface___")]
   public static extern void delete_IADLXInterface(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RGB_gamutR_set___")]
+  public static extern void ADLX_RGB_gamutR_set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RGB_gamutR_get___")]
+  public static extern double ADLX_RGB_gamutR_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RGB_gamutG_set___")]
+  public static extern void ADLX_RGB_gamutG_set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RGB_gamutG_get___")]
+  public static extern double ADLX_RGB_gamutG_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RGB_gamutB_set___")]
+  public static extern void ADLX_RGB_gamutB_set(global::System.Runtime.InteropServices.HandleRef jarg1, double jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RGB_gamutB_get___")]
+  public static extern double ADLX_RGB_gamutB_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_RGB___")]
+  public static extern global::System.IntPtr new_ADLX_RGB();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_RGB___")]
+  public static extern void delete_ADLX_RGB(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_Point_x_set___")]
+  public static extern void ADLX_Point_x_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_Point_x_get___")]
+  public static extern int ADLX_Point_x_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_Point_y_set___")]
+  public static extern void ADLX_Point_y_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_Point_y_get___")]
+  public static extern int ADLX_Point_y_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_Point___")]
+  public static extern global::System.IntPtr new_ADLX_Point();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_Point___")]
+  public static extern void delete_ADLX_Point(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GamutColorSpace_red_set___")]
+  public static extern void ADLX_GamutColorSpace_red_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GamutColorSpace_red_get___")]
+  public static extern global::System.IntPtr ADLX_GamutColorSpace_red_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GamutColorSpace_green_set___")]
+  public static extern void ADLX_GamutColorSpace_green_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GamutColorSpace_green_get___")]
+  public static extern global::System.IntPtr ADLX_GamutColorSpace_green_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GamutColorSpace_blue_set___")]
+  public static extern void ADLX_GamutColorSpace_blue_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GamutColorSpace_blue_get___")]
+  public static extern global::System.IntPtr ADLX_GamutColorSpace_blue_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_GamutColorSpace___")]
+  public static extern global::System.IntPtr new_ADLX_GamutColorSpace();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_GamutColorSpace___")]
+  public static extern void delete_ADLX_GamutColorSpace(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GammaRamp_gamma_set___")]
+  public static extern void ADLX_GammaRamp_gamma_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_GammaRamp_gamma_get___")]
+  public static extern global::System.IntPtr ADLX_GammaRamp_gamma_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_GammaRamp___")]
+  public static extern global::System.IntPtr new_ADLX_GammaRamp();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_GammaRamp___")]
+  public static extern void delete_ADLX_GammaRamp(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA0_set___")]
+  public static extern void ADLX_RegammaCoeff_coefficientA0_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA0_get___")]
+  public static extern int ADLX_RegammaCoeff_coefficientA0_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA1_set___")]
+  public static extern void ADLX_RegammaCoeff_coefficientA1_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA1_get___")]
+  public static extern int ADLX_RegammaCoeff_coefficientA1_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA2_set___")]
+  public static extern void ADLX_RegammaCoeff_coefficientA2_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA2_get___")]
+  public static extern int ADLX_RegammaCoeff_coefficientA2_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA3_set___")]
+  public static extern void ADLX_RegammaCoeff_coefficientA3_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_coefficientA3_get___")]
+  public static extern int ADLX_RegammaCoeff_coefficientA3_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_gamma_set___")]
+  public static extern void ADLX_RegammaCoeff_gamma_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_RegammaCoeff_gamma_get___")]
+  public static extern int ADLX_RegammaCoeff_gamma_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_RegammaCoeff___")]
+  public static extern global::System.IntPtr new_ADLX_RegammaCoeff();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_RegammaCoeff___")]
+  public static extern void delete_ADLX_RegammaCoeff(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_timingFlags_set___")]
+  public static extern void ADLX_TimingInfo_timingFlags_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_timingFlags_get___")]
+  public static extern int ADLX_TimingInfo_timingFlags_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hTotal_set___")]
+  public static extern void ADLX_TimingInfo_hTotal_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hTotal_get___")]
+  public static extern int ADLX_TimingInfo_hTotal_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vTotal_set___")]
+  public static extern void ADLX_TimingInfo_vTotal_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vTotal_get___")]
+  public static extern int ADLX_TimingInfo_vTotal_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hDisplay_set___")]
+  public static extern void ADLX_TimingInfo_hDisplay_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hDisplay_get___")]
+  public static extern int ADLX_TimingInfo_hDisplay_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vDisplay_set___")]
+  public static extern void ADLX_TimingInfo_vDisplay_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vDisplay_get___")]
+  public static extern int ADLX_TimingInfo_vDisplay_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hFrontPorch_set___")]
+  public static extern void ADLX_TimingInfo_hFrontPorch_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hFrontPorch_get___")]
+  public static extern int ADLX_TimingInfo_hFrontPorch_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vFrontPorch_set___")]
+  public static extern void ADLX_TimingInfo_vFrontPorch_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vFrontPorch_get___")]
+  public static extern int ADLX_TimingInfo_vFrontPorch_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hSyncWidth_set___")]
+  public static extern void ADLX_TimingInfo_hSyncWidth_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hSyncWidth_get___")]
+  public static extern int ADLX_TimingInfo_hSyncWidth_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vSyncWidth_set___")]
+  public static extern void ADLX_TimingInfo_vSyncWidth_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vSyncWidth_get___")]
+  public static extern int ADLX_TimingInfo_vSyncWidth_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hPolarity_set___")]
+  public static extern void ADLX_TimingInfo_hPolarity_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_hPolarity_get___")]
+  public static extern int ADLX_TimingInfo_hPolarity_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vPolarity_set___")]
+  public static extern void ADLX_TimingInfo_vPolarity_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_TimingInfo_vPolarity_get___")]
+  public static extern int ADLX_TimingInfo_vPolarity_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_TimingInfo___")]
+  public static extern global::System.IntPtr new_ADLX_TimingInfo();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_TimingInfo___")]
+  public static extern void delete_ADLX_TimingInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_resWidth_set___")]
+  public static extern void ADLX_CustomResolution_resWidth_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_resWidth_get___")]
+  public static extern int ADLX_CustomResolution_resWidth_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_resHeight_set___")]
+  public static extern void ADLX_CustomResolution_resHeight_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_resHeight_get___")]
+  public static extern int ADLX_CustomResolution_resHeight_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_refreshRate_set___")]
+  public static extern void ADLX_CustomResolution_refreshRate_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_refreshRate_get___")]
+  public static extern int ADLX_CustomResolution_refreshRate_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_presentation_set___")]
+  public static extern void ADLX_CustomResolution_presentation_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_presentation_get___")]
+  public static extern int ADLX_CustomResolution_presentation_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_timingStandard_set___")]
+  public static extern void ADLX_CustomResolution_timingStandard_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_timingStandard_get___")]
+  public static extern int ADLX_CustomResolution_timingStandard_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_GPixelClock_set___")]
+  public static extern void ADLX_CustomResolution_GPixelClock_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_GPixelClock_get___")]
+  public static extern int ADLX_CustomResolution_GPixelClock_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_detailedTiming_set___")]
+  public static extern void ADLX_CustomResolution_detailedTiming_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_CustomResolution_detailedTiming_get___")]
+  public static extern global::System.IntPtr ADLX_CustomResolution_detailedTiming_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_CustomResolution___")]
+  public static extern global::System.IntPtr new_ADLX_CustomResolution();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_CustomResolution___")]
+  public static extern void delete_ADLX_CustomResolution(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_IntRange_minValue_set___")]
+  public static extern void ADLX_IntRange_minValue_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_IntRange_minValue_get___")]
+  public static extern int ADLX_IntRange_minValue_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_IntRange_maxValue_set___")]
+  public static extern void ADLX_IntRange_maxValue_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_IntRange_maxValue_get___")]
+  public static extern int ADLX_IntRange_maxValue_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_IntRange_step_set___")]
+  public static extern void ADLX_IntRange_step_set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_IntRange_step_get___")]
+  public static extern int ADLX_IntRange_step_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_IntRange___")]
+  public static extern global::System.IntPtr new_ADLX_IntRange();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_IntRange___")]
+  public static extern void delete_ADLX_IntRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_UINT16_RGB_red_set___")]
+  public static extern void ADLX_UINT16_RGB_red_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_UINT16_RGB_red_get___")]
+  public static extern ushort ADLX_UINT16_RGB_red_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_UINT16_RGB_green_set___")]
+  public static extern void ADLX_UINT16_RGB_green_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_UINT16_RGB_green_get___")]
+  public static extern ushort ADLX_UINT16_RGB_green_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_UINT16_RGB_blue_set___")]
+  public static extern void ADLX_UINT16_RGB_blue_set(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_UINT16_RGB_blue_get___")]
+  public static extern ushort ADLX_UINT16_RGB_blue_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_UINT16_RGB___")]
+  public static extern global::System.IntPtr new_ADLX_UINT16_RGB();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_UINT16_RGB___")]
+  public static extern void delete_ADLX_UINT16_RGB(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_3DLUT_Data_data_set___")]
+  public static extern void ADLX_3DLUT_Data_data_set(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLX_3DLUT_Data_data_get___")]
+  public static extern global::System.IntPtr ADLX_3DLUT_Data_data_get(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_ADLX_3DLUT_Data___")]
+  public static extern global::System.IntPtr new_ADLX_3DLUT_Data();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_ADLX_3DLUT_Data___")]
+  public static extern void delete_ADLX_3DLUT_Data(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXList_IID___")]
   public static extern global::System.IntPtr IADLXList_IID();
 
@@ -1623,6 +1917,21 @@ class ADLXPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_adlx_sizeP_value___")]
   public static extern uint adlx_sizeP_value(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_adlx_intRangeP___")]
+  public static extern global::System.IntPtr new_adlx_intRangeP();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_copy_adlx_intRangeP___")]
+  public static extern global::System.IntPtr copy_adlx_intRangeP(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_adlx_intRangeP___")]
+  public static extern void delete_adlx_intRangeP(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_adlx_intRangeP_assign___")]
+  public static extern void adlx_intRangeP_assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_adlx_intRangeP_value___")]
+  public static extern global::System.IntPtr adlx_intRangeP_value(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_displaySerP_Ptr___")]
   public static extern global::System.IntPtr new_displaySerP_Ptr();

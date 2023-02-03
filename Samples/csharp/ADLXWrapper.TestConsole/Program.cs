@@ -76,8 +76,15 @@ namespace ADLXWrapper.TestConsole
                 if (zeroRPMSupported && HasError(manual.SetZeroRPMState(false), "Coudln't reset 0 rpm mode"))
                     return;
 
+                var speedRangePtr = ADLX.new_adlx_intRangeP().DisposeWith(ADLX.delete_adlx_intRangeP, disposable);
+                var tempRangePtr = ADLX.new_adlx_intRangeP().DisposeWith(ADLX.delete_adlx_intRangeP, disposable);
+                if (HasError(manual.GetFanTuningRanges(speedRangePtr, tempRangePtr), "Couldn't get fan speed range."))
+                    return;
+
+                var speedRange = ADLX.adlx_intRangeP_value(speedRangePtr);
+
                 ///  SETTING FAN SPEED
-                for (int v = 0; v < 100; v++)
+                for (int v = speedRange.minValue; v < speedRange.maxValue; v += speedRange.step)
                 {
                     SetFanSpeed(manual, v);
                     await Task.Delay(1500);
