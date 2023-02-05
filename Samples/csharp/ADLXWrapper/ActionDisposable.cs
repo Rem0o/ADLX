@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ADLXWrapper.TestConsole
+namespace ADLXWrapper
 {
     public class ActionDisposable : IDisposable
     {
@@ -15,6 +15,11 @@ namespace ADLXWrapper.TestConsole
         {
             _action?.Invoke();
             _action = null;
+        }
+
+        public static implicit operator ActionDisposable(Action action)
+        {
+            return new ActionDisposable (action);
         }
     }
 }

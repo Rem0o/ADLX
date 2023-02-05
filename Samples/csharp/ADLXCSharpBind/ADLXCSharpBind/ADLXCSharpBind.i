@@ -77,6 +77,7 @@ typedef     adlx_int32          adlx_int;
 typedef     unsigned long       adlx_ulong;
 typedef     adlx_uint32         adlx_uint;
 typedef     bool                adlx_bool;
+typedef		char*				adlx_string;
 typedef wchar_t WCHAR;    // wc,   16-bit UNICODE character
 typedef WCHAR TCHAR;
 
@@ -186,6 +187,7 @@ TYPE2 NAME(TYPE1 x) {
 %ppointer_functions(IADLXManualFanTuningStateList*, fanTuningStateListP_Ptr);
 %ppointer_functions(IADLXManualFanTuningState*, fanTuningStateP_Ptr);
 %ppointer_functions(IADLXGPUMetrics*, metricsP_Ptr);
+%ppointer_functions(adlx_string, stringP_Ptr);
 
 
 %pointer_cast(IADLXInterface*, IADLXManualFanTuning*, CastManualFanTuning);

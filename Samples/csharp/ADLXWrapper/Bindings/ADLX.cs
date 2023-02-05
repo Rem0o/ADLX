@@ -667,6 +667,31 @@ public class ADLX {
     return ret;
   }
 
+  public static SWIGTYPE_p_p_char new_stringP_Ptr() {
+    global::System.IntPtr cPtr = ADLXPINVOKE.new_stringP_Ptr();
+    SWIGTYPE_p_p_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_char(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_p_char copy_stringP_Ptr(string value) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.copy_stringP_Ptr(value);
+    SWIGTYPE_p_p_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_char(cPtr, false);
+    return ret;
+  }
+
+  public static void delete_stringP_Ptr(SWIGTYPE_p_p_char obj) {
+    ADLXPINVOKE.delete_stringP_Ptr(SWIGTYPE_p_p_char.getCPtr(obj));
+  }
+
+  public static void stringP_Ptr_assign(SWIGTYPE_p_p_char obj, string value) {
+    ADLXPINVOKE.stringP_Ptr_assign(SWIGTYPE_p_p_char.getCPtr(obj), value);
+  }
+
+  public static string stringP_Ptr_value(SWIGTYPE_p_p_char obj) {
+    string ret = ADLXPINVOKE.stringP_Ptr_value(SWIGTYPE_p_p_char.getCPtr(obj));
+    return ret;
+  }
+
   public static IADLXManualFanTuning CastManualFanTuning(IADLXInterface x) {
     global::System.IntPtr cPtr = ADLXPINVOKE.CastManualFanTuning(IADLXInterface.getCPtr(x));
     IADLXManualFanTuning ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXManualFanTuning(cPtr, false);

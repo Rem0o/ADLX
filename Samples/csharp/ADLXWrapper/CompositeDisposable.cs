@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ADLXWrapper.TestConsole
+namespace ADLXWrapper
 {
     public class CompositeDisposable : IDisposable
     {

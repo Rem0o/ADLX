@@ -1,5 +1,6 @@
 ﻿using ADLXWrapper.Bindings;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ADLXWrapper.TestConsole
@@ -7,6 +8,34 @@ namespace ADLXWrapper.TestConsole
     internal class Program
     {
         static async Task Main(string[] args)
+        {
+            await FanSpeedLoopWithWraper();
+        }
+
+        private static async Task FanSpeedLoopWithWraper()
+        {
+            using (var disposable = new CompositeDisposable())
+            {
+                var adlx = new ADLXWrapper().DisposeWith(disposable);
+                var system = adlx.GetSystemServices().DisposeWith(disposable);
+                var gpus = system.GetGPUs().Select(x => x.DisposeWith(disposable)).ToArray();
+                var tuning = system.GetGPUTuningService().DisposeWith(disposable);
+                GPU gpu = gpus.First();
+
+                Console.WriteLine($"Found GPU with name: {gpu.Name}");
+
+                var manualFanTuning = tuning.GetManualFanTuning(gpu).DisposeWith(disposable);
+
+                for (int speed = manualFanTuning.SpeedRange.Min; speed <= manualFanTuning.SpeedRange.Max; speed += manualFanTuning.SpeedRange.Step)
+                {
+                    Console.WriteLine($"Setting fan speed {speed}%");
+                    manualFanTuning.SetFanSpeed(speed);
+                    await Task.Delay(1000);
+                }
+            }
+        }
+
+        private static async Task FanSpeedLoopWithBindings()
         {
             using (var disposable = new CompositeDisposable())
             {
@@ -142,7 +171,7 @@ namespace ADLXWrapper.TestConsole
                     state.SetFanSpeed(speed);
                 }
 
-                var errorIndexPtr = ADLX.new_intP().DisposeWith(ADLX.delete_intP, disposable); ;
+                var errorIndexPtr = ADLX.new_intP().DisposeWith(ADLX.delete_intP, disposable);
                 HasError(manual.IsValidFanTuningStates(stateList, errorIndexPtr), "Couldn't validate states");
 
                 int errorIndex = ADLX.intP_value(errorIndexPtr);

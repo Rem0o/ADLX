@@ -2143,6 +2143,21 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_metricsP_Ptr_value___")]
   public static extern global::System.IntPtr metricsP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_new_stringP_Ptr___")]
+  public static extern global::System.IntPtr new_stringP_Ptr();
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_copy_stringP_Ptr___")]
+  public static extern global::System.IntPtr copy_stringP_Ptr(string jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_stringP_Ptr___")]
+  public static extern void delete_stringP_Ptr(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_stringP_Ptr_assign___")]
+  public static extern void stringP_Ptr_assign(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_stringP_Ptr_value___")]
+  public static extern string stringP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_CastManualFanTuning___")]
   public static extern global::System.IntPtr CastManualFanTuning(global::System.Runtime.InteropServices.HandleRef jarg1);
 

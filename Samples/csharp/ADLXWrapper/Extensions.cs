@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ADLXWrapper.Bindings;
+using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ADLXWrapper.TestConsole
+namespace ADLXWrapper
 {
-    internal static class Extensions
+    public static class Extensions
     {
         public static T DisposeWith<T>(this T item, CompositeDisposable compositeDisposable) where T : IDisposable
         {
@@ -17,6 +18,14 @@ namespace ADLXWrapper.TestConsole
         {
             compositeDisposable.Add(new ActionDisposable(() => _disposeAction(item)));
             return item;
+        }
+
+        public static void ThrowIfError(this ADLX_RESULT result, string message)
+        {
+            if (result != ADLX_RESULT.ADLX_OK)
+            {
+                throw new ADLXEception($"Result: {result} {Environment.NewLine}{message}");
+            }
         }
     }
 }
