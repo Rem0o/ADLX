@@ -18,6 +18,7 @@ namespace ADLXWrapper
             var @interface = ADLX.adlxInterfaceP_Ptr_value(ptr);
             var manual = ADLX.CastManualFanTuning(@interface);
             ADLX.delete_adlxInterfaceP_Ptr(ptr);
+
             return new ManualFanTuning(manual);
         }
     }
