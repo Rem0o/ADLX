@@ -35,6 +35,7 @@ typedef     double              adlx_double;
 typedef     float               adlx_float;
 typedef     void                adlx_void;
 typedef     long                adlx_long;
+typedef		char*				adlx_string;
 typedef     adlx_int32          adlx_int;
 typedef     unsigned long       adlx_ulong;
 typedef     adlx_uint32         adlx_uint;
@@ -76,8 +77,8 @@ typedef     long                adlx_long;
 typedef     adlx_int32          adlx_int;
 typedef     unsigned long       adlx_ulong;
 typedef     adlx_uint32         adlx_uint;
-typedef     bool                adlx_bool;
 typedef		char*				adlx_string;
+typedef     bool                adlx_bool;
 typedef wchar_t WCHAR;    // wc,   16-bit UNICODE character
 typedef WCHAR TCHAR;
 

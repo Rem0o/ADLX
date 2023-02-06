@@ -9,10 +9,11 @@ namespace ADLXWrapper
 
         }
 
-        public void GetGPUMetrics(GPU gpu)
+        public GPUMetrics GetGPUMetrics(GPU gpu)
         {
-            SWIGTYPE_p_p_adlx__IADLXGPUMetrics ptr = ADLX.new_metricsP_Ptr();
-            UnmanagedInterface.GetCurrentGPUMetrics( gpu.UnmanagedInterface, ptr )
+            var ptr = ADLX.new_metricsP_Ptr();
+            UnmanagedInterface.GetCurrentGPUMetrics( gpu.UnmanagedInterface, ptr );
+            return new GPUMetrics( ADLX.metricsP_Ptr_value(ptr));
         }
     }
 }
