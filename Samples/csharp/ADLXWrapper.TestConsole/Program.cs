@@ -158,9 +158,10 @@ namespace ADLXWrapper.TestConsole
 
         private static void SetFanSpeed(IADLXManualFanTuning manual, int speed)
         {
+            Console.WriteLine($"Trying to set fan speed to {speed}");
             using (var disposable = new CompositeDisposable())
             {
-                var stateListPtr = ADLX.new_fanTuningStateListP_Ptr().DisposeWith(ADLX.delete_fanTuningStateListP_Ptr, disposable); ;
+                var stateListPtr = ADLX.new_fanTuningStateListP_Ptr().DisposeWith(ADLX.delete_fanTuningStateListP_Ptr, disposable);
                 if (HasError(manual.GetFanTuningStates(stateListPtr), "Couldn't get the fan tuning states"))
                     return;
 
