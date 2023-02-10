@@ -9,6 +9,10 @@ namespace ADLXWrapper.TestConsole
     {
         static async Task Main(string[] args)
         {
+            Console.WriteLine("Testing with direct bindinges...");
+            await FanSpeedLoopWithBindings();
+
+            Console.WriteLine("Testing with ADLXWrapper...");
             await FanSpeedLoopWithWraper();
         }
 
