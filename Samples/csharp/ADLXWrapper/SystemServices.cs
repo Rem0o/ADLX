@@ -11,24 +11,21 @@ namespace ADLXWrapper
 
         public IReadOnlyList<GPU> GetGPUs()
         {
-            using (var disposable = new CompositeDisposable())
+            var gpuListPtr = ADLX.new_gpuListP_Ptr().DisposeWith(ADLX.delete_gpuListP_Ptr, Disposable);
+            UnmanagedInterface.GetGPUs(gpuListPtr).ThrowIfError("Couldn't get GPU list");
+
+            var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr).DisposeWith(Disposable);
+
+            List<GPU> gpus = new List<GPU>();
+            for (uint i = gpuList.Begin(); i < gpuList.End(); i++)
             {
-                var gpuListPtr = ADLX.new_gpuListP_Ptr().DisposeWith(ADLX.delete_gpuListP_Ptr, disposable);
-                UnmanagedInterface.GetGPUs(gpuListPtr).ThrowIfError("Couldn't get GPU list");
+                SWIGTYPE_p_p_adlx__IADLXGPU gpuPtr = ADLX.new_gpuP_Ptr().DisposeWith(ADLX.delete_gpuP_Ptr, Disposable);
+                gpuList.At(i, gpuPtr).ThrowIfError($"Couldn't get gpu at index {i}");
 
-                var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr).DisposeWith(disposable);
-
-                List<GPU> gpus = new List<GPU>();
-                for (uint i = gpuList.Begin(); i < gpuList.End(); i++)
-                {
-                    SWIGTYPE_p_p_adlx__IADLXGPU gpuPtr = ADLX.new_gpuP_Ptr().DisposeWith(ADLX.delete_gpuP_Ptr, disposable);
-                    gpuList.At(i, gpuPtr).ThrowIfError($"Couldn't get gpu at index {i}");
-
-                    gpus.Add(new GPU(ADLX.gpuP_Ptr_value(gpuPtr)));
-                }
-
-                return gpus;
+                gpus.Add(new GPU(ADLX.gpuP_Ptr_value(gpuPtr)));
             }
+
+            return gpus;
         }
 
         public GPUTuningService GetGPUTuningService()
