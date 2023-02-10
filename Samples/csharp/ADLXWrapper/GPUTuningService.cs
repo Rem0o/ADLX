@@ -22,9 +22,8 @@ namespace ADLXWrapper
             var ptr = ADLX.new_adlxInterfaceP_Ptr().DisposeWith(ADLX.delete_adlxInterfaceP_Ptr, Disposable);
             UnmanagedInterface.GetManualFanTuning(gpu.UnmanagedInterface, ptr);
             var @interface = ADLX.adlxInterfaceP_Ptr_value(ptr).DisposeWith(Disposable);
-           
 
-            var lol = new ManualFanTuning(@interface);
+            return new ManualFanTuning(@interface);
         }
     }
 }
