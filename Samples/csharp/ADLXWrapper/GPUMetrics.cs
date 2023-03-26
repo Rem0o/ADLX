@@ -2,7 +2,7 @@
 
 namespace ADLXWrapper
 {
-    public class GPUMetrics : UnmanagedWrapper<IADLXGPUMetrics>
+    public class GPUMetrics : ADLXInterfaceWrapper<IADLXGPUMetrics>
     {
         private SWIGTYPE_p_int _intPtr;
         private SWIGTYPE_p_double _doublePtr;
@@ -17,7 +17,7 @@ namespace ADLXWrapper
         {
             lock ( _intPtr )
             {
-                UnmanagedInterface.GPUFanSpeed( _intPtr );
+                NativeInterface.GPUFanSpeed( _intPtr );
                 return ADLX.intP_value( _intPtr );
             }
         }
@@ -26,7 +26,7 @@ namespace ADLXWrapper
         {
             lock ( _doublePtr )
             {
-                UnmanagedInterface.GPUHotspotTemperature( _doublePtr );
+                NativeInterface.GPUHotspotTemperature( _doublePtr );
                 return ADLX.doubleP_value( _doublePtr );
             }
         }
@@ -35,7 +35,7 @@ namespace ADLXWrapper
         {
             lock ( _doublePtr )
             {
-                UnmanagedInterface.GPUTemperature( _doublePtr );
+                NativeInterface.GPUTemperature( _doublePtr );
                 return ADLX.doubleP_value( _doublePtr );
             }
         }

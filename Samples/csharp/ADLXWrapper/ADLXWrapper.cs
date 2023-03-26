@@ -2,16 +2,23 @@
 
 namespace ADLXWrapper
 {
-    public class ADLXWrapper : UnmanagedWrapper<ADLXHelper>
+    public class ADLXWrapper : Wrapper<ADLXHelper>
     {
         public ADLXWrapper() : base(new ADLXHelper())
         {
-            UnmanagedInterface.Initialize().ThrowIfError("Couldn't initialize ADLX");
+            NativeInterface.Initialize().ThrowIfError("Couldn't initialize ADLX");
         }
 
         public SystemServices GetSystemServices()
         {
-            return new SystemServices(UnmanagedInterface.GetSystemServices());
+            return new SystemServices(NativeInterface.GetSystemServices());
         }
+
+        public override void Dispose()
+        {
+            NativeInterface.Terminate().ThrowIfError("Couldn't terminate ADLX");
+            base.Dispose();
+        }
+
     }
 }

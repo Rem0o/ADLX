@@ -1,22 +1,23 @@
-﻿using System;
+﻿using ADLXWrapper.Bindings;
+using System;
 
 namespace ADLXWrapper
 {
-    public abstract class UnmanagedWrapper<T> : IDisposable where T : IDisposable
+    public abstract class Wrapper<T> : IDisposable where T : IDisposable
     {
         protected readonly CompositeDisposable Disposable = new CompositeDisposable();
-        internal T UnmanagedInterface;
+        internal T NativeInterface;
 
-        protected UnmanagedWrapper(T nativeInterface, ActionDisposable disposeUnmanagedRessources = null)
+        protected Wrapper(T nativeInterface, ActionDisposable disposeUnmanagedRessources = null)
         {
-            UnmanagedInterface = nativeInterface.DisposeWith(Disposable);
+            NativeInterface = nativeInterface.DisposeWith(Disposable);
             if (disposeUnmanagedRessources != null)
             {
                 Disposable.Add(disposeUnmanagedRessources);
             }
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Disposable.Dispose();
         }

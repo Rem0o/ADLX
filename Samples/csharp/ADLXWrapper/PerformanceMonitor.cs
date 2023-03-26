@@ -2,7 +2,7 @@
 
 namespace ADLXWrapper
 {
-    public class PerformanceMonitor : UnmanagedWrapper<IADLXPerformanceMonitoringServices>
+    public class PerformanceMonitor : ADLXInterfaceWrapper<IADLXPerformanceMonitoringServices>
     {
         public PerformanceMonitor( IADLXPerformanceMonitoringServices performanceMonitor ) : base( performanceMonitor )
         {
@@ -11,7 +11,7 @@ namespace ADLXWrapper
         public GPUMetrics GetGPUMetrics(GPU gpu)
         {
             var ptr = ADLX.new_metricsP_Ptr().DisposeWith(ADLX.delete_metricsP_Ptr, Disposable);
-            UnmanagedInterface.GetCurrentGPUMetrics( gpu.UnmanagedInterface, ptr );
+            NativeInterface.GetCurrentGPUMetrics( gpu.NativeInterface, ptr );
             return new GPUMetrics( ADLX.metricsP_Ptr_value(ptr));
         }
     }

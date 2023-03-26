@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ADLXWrapper
 {
-    public class SystemServices : UnmanagedWrapper<IADLXSystem>
+    public class SystemServices : Wrapper<IADLXSystem>
     {
         public SystemServices(IADLXSystem iADLXSystem) : base(iADLXSystem)
         {
@@ -12,7 +12,7 @@ namespace ADLXWrapper
         public IReadOnlyList<GPU> GetGPUs()
         {
             var gpuListPtr = ADLX.new_gpuListP_Ptr().DisposeWith(ADLX.delete_gpuListP_Ptr, Disposable);
-            UnmanagedInterface.GetGPUs(gpuListPtr).ThrowIfError("Couldn't get GPU list");
+            NativeInterface.GetGPUs(gpuListPtr).ThrowIfError("Couldn't get GPU list");
 
             var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr).DisposeWith(Disposable);
 
@@ -31,7 +31,7 @@ namespace ADLXWrapper
         public GPUTuningService GetGPUTuningService()
         {
             var ptr = ADLX.new_gpuTuningP_Ptr().DisposeWith(ADLX.delete_gpuTuningP_Ptr, Disposable);
-            UnmanagedInterface.GetGPUTuningServices(ptr);
+            NativeInterface.GetGPUTuningServices(ptr);
             var tuning = ADLX.gpuTuningP_Ptr_value(ptr);
             return new GPUTuningService(tuning);
         }
@@ -39,7 +39,7 @@ namespace ADLXWrapper
         public PerformanceMonitor GetPerformanceMonitor()
         {
             var ptr = ADLX.new_performanceP_Ptr().DisposeWith(ADLX.delete_performanceP_Ptr, Disposable);
-            UnmanagedInterface.GetPerformanceMonitoringServices(ptr);
+            NativeInterface.GetPerformanceMonitoringServices(ptr);
             var performanceMonitor = ADLX.performanceP_Ptr_value(ptr);
             return new PerformanceMonitor(performanceMonitor);
         }

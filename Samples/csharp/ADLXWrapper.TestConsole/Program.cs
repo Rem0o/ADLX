@@ -24,17 +24,21 @@ namespace ADLXWrapper.TestConsole
                 var system = adlx.GetSystemServices().DisposeWith(disposable);
                 var gpus = system.GetGPUs().Select(x => x.DisposeWith(disposable)).ToArray();
                 var tuning = system.GetGPUTuningService().DisposeWith(disposable);
+                var perf = system.GetPerformanceMonitor().DisposeWith(disposable);
                 GPU gpu = gpus.First();
 
                 Console.WriteLine($"Found GPU with name: {gpu.Name}");
 
                 var manualFanTuning = tuning.GetManualFanTuning(gpu).DisposeWith(disposable);
-
+                var metrics = perf.GetGPUMetrics(gpu).DisposeWith(disposable);
+                var ptr = ADLX.new_intP().DisposeWith(ADLX.delete_intP, disposable);
                 for (int speed = manualFanTuning.SpeedRange.Min; speed <= manualFanTuning.SpeedRange.Max; speed += manualFanTuning.SpeedRange.Step)
                 {
                     Console.WriteLine($"Setting fan speed {speed}%");
                     manualFanTuning.SetFanSpeed(speed);
                     await Task.Delay(1000);
+                    var fanspeed = metrics.GetFanSpeed();
+
                 }
             }
         }
