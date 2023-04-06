@@ -108,6 +108,11 @@ public class IADLXGPUMetrics : IADLXInterface {
     return ret;
   }
 
+  public virtual ADLX_RESULT GPUIntakeTemperature(SWIGTYPE_p_double data) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXGPUMetrics_GPUIntakeTemperature(swigCPtr, SWIGTYPE_p_double.getCPtr(data));
+    return ret;
+  }
+
 }
 
 }

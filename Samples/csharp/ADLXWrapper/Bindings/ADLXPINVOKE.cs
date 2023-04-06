@@ -1507,6 +1507,12 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXGPUMetricsSupport_GetGPUTotalBoardPowerRange___")]
   public static extern int IADLXGPUMetricsSupport_GetGPUTotalBoardPowerRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXGPUMetricsSupport_GetGPUIntakeTemperatureRange___")]
+  public static extern int IADLXGPUMetricsSupport_GetGPUIntakeTemperatureRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXGPUMetricsSupport_IsSupportedGPUIntakeTemperature___")]
+  public static extern int IADLXGPUMetricsSupport_IsSupportedGPUIntakeTemperature(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_IADLXGPUMetricsSupport___")]
   public static extern void delete_IADLXGPUMetricsSupport(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -1569,6 +1575,9 @@ class ADLXPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXGPUMetrics_GPUVoltage___")]
   public static extern int IADLXGPUMetrics_GPUVoltage(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXGPUMetrics_GPUIntakeTemperature___")]
+  public static extern int IADLXGPUMetrics_GPUIntakeTemperature(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_delete_IADLXGPUMetrics___")]
   public static extern void delete_IADLXGPUMetrics(global::System.Runtime.InteropServices.HandleRef jarg1);

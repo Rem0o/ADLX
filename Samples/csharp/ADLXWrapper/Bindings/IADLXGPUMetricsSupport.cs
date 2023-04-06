@@ -153,6 +153,16 @@ public class IADLXGPUMetricsSupport : IADLXInterface {
     return ret;
   }
 
+  public virtual ADLX_RESULT GetGPUIntakeTemperatureRange(SWIGTYPE_p_int minValue, SWIGTYPE_p_int maxValue) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXGPUMetricsSupport_GetGPUIntakeTemperatureRange(swigCPtr, SWIGTYPE_p_int.getCPtr(minValue), SWIGTYPE_p_int.getCPtr(maxValue));
+    return ret;
+  }
+
+  public virtual ADLX_RESULT IsSupportedGPUIntakeTemperature(SWIGTYPE_p_bool supported) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.IADLXGPUMetricsSupport_IsSupportedGPUIntakeTemperature(swigCPtr, SWIGTYPE_p_bool.getCPtr(supported));
+    return ret;
+  }
+
 }
 
 }

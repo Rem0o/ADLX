@@ -8,11 +8,11 @@ namespace ADLXWrapper
         private IADLXManualFanTuningStateList _list;
         private IADLXManualFanTuningState[] _states;
         private SWIGTYPE_p_int _intPtr = ADLX.new_intP();
+        private readonly IADLXInterface _interface;
 
         public ManualFanTuning(IADLXInterface @interface) : base(ADLX.CastManualFanTuning(@interface))
         {
             _intPtr.DisposeWith(ADLX.delete_intP, Disposable);
-            @interface.DisposeWith(Disposable);
             var listPtr = ADLX.new_fanTuningStateListP_Ptr().DisposeWith(ADLX.delete_fanTuningStateListP_Ptr, Disposable);
             NativeInterface.GetFanTuningStates(listPtr);
             _list = ADLX.fanTuningStateListP_Ptr_value(listPtr).DisposeWith(Disposable);
@@ -30,6 +30,8 @@ namespace ADLXWrapper
 
             using (ADLX_IntRange speedRange = ADLX.adlx_intRangeP_value(speedRangePtr))
                 SpeedRange = new Range(speedRange);
+
+            _interface = @interface;
         }
 
         public Range SpeedRange { get; }
@@ -65,6 +67,12 @@ namespace ADLXWrapper
             NativeInterface.GetZeroRPMState(ptr).ThrowIfError("Couldn't get zero RPM state");
 
             return ADLX.boolP_value(ptr);
+        }
+
+        public override void Dispose()
+        {
+            _interface.Release();
+            base.Dispose();
         }
     }
 }
