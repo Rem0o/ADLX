@@ -8,6 +8,7 @@ namespace ADLXWrapper
         private IADLXManualFanTuningStateList _list;
         private IADLXManualFanTuningState[] _states;
         private SWIGTYPE_p_int _intPtr = ADLX.new_intP();
+        private bool _supportsTargetFanSpeed;
         private readonly IADLXInterface _interface;
 
         public ManualFanTuning(IADLXInterface @interface) : base(ADLX.CastManualFanTuning(@interface))
@@ -32,12 +33,24 @@ namespace ADLXWrapper
                 SpeedRange = new Range(speedRange);
 
             _interface = @interface;
+
+            var boolP = ADLX.new_boolP().DisposeWith(ADLX.delete_boolP, Disposable);
+            if (NativeInterface.IsSupportedTargetFanSpeed(boolP) == ADLX_RESULT.ADLX_OK)
+            {
+                _supportsTargetFanSpeed = ADLX.boolP_value(boolP);
+            }
         }
 
         public Range SpeedRange { get; }
 
         public void SetFanSpeed(int speed)
         {
+            if (_supportsTargetFanSpeed)
+            {
+                NativeInterface.SetTargetFanSpeed(speed).ThrowIfError($"Couldn't set fan speed {speed}");
+                return;
+            }
+
             for (int i = 0; i < _states.Length; i++)
                 _states[i].SetFanSpeed(speed);
 
