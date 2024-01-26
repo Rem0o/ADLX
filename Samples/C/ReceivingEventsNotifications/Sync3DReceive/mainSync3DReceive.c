@@ -56,7 +56,7 @@ adlx_bool ADLX_STD_CALL On3DSettingsChanged(IADLX3DSettingsChangedListener *pThi
         }
         else if (p3DSettingsChangedEvent->pVtbl->IsWaitForVerticalRefreshChanged(p3DSettingsChangedEvent))
         {
-            printf("\tWait For Vertical Refresh (VRAM) is changed\n");
+            printf("\tWait For Vertical Refresh is changed\n");
         }
         else if (p3DSettingsChangedEvent->pVtbl->IsFrameRateTargetControlChanged(p3DSettingsChangedEvent))
         {
