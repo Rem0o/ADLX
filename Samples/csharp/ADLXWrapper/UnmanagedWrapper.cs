@@ -8,13 +8,9 @@ namespace ADLXWrapper
         protected readonly CompositeDisposable Disposable = new CompositeDisposable();
         internal T NativeInterface;
 
-        protected Wrapper(T nativeInterface, ActionDisposable disposeUnmanagedRessources = null)
+        protected Wrapper(T nativeInterface)
         {
             NativeInterface = nativeInterface.DisposeWith(Disposable);
-            if (disposeUnmanagedRessources != null)
-            {
-                Disposable.Add(disposeUnmanagedRessources);
-            }
         }
 
         public virtual void Dispose()

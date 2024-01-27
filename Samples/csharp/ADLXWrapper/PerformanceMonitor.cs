@@ -4,15 +4,17 @@ namespace ADLXWrapper
 {
     public class PerformanceMonitor : ADLXInterfaceWrapper<IADLXPerformanceMonitoringServices>
     {
-        public PerformanceMonitor( IADLXPerformanceMonitoringServices performanceMonitor ) : base( performanceMonitor )
+        private SWIGTYPE_p_p_adlx__IADLXGPUMetrics _ptr;
+
+        public PerformanceMonitor(IADLXPerformanceMonitoringServices performanceMonitor) : base(performanceMonitor)
         {
+            _ptr = ADLX.new_metricsP_Ptr().DisposeWith(ADLX.delete_metricsP_Ptr, Disposable);
         }
 
         public GPUMetrics GetGPUMetrics(GPU gpu)
         {
-            var ptr = ADLX.new_metricsP_Ptr().DisposeWith(ADLX.delete_metricsP_Ptr, Disposable);
-            NativeInterface.GetCurrentGPUMetrics( gpu.NativeInterface, ptr );
-            return new GPUMetrics( ADLX.metricsP_Ptr_value(ptr));
+            NativeInterface.GetCurrentGPUMetrics(gpu.NativeInterface, _ptr);
+            return new GPUMetrics(ADLX.metricsP_Ptr_value(_ptr));
         }
     }
 }

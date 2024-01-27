@@ -4,7 +4,7 @@ namespace ADLXWrapper
 {
     public abstract class ADLXInterfaceWrapper<T> : Wrapper<T> where T : IADLXInterface
     {
-        protected ADLXInterfaceWrapper(T nativeInterface, ActionDisposable disposeUnmanagedRessources = null) : base(nativeInterface, disposeUnmanagedRessources)
+        protected ADLXInterfaceWrapper(T nativeInterface) : base(nativeInterface)
         {
 
         }
