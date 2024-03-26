@@ -8,7 +8,6 @@ namespace ADLXWrapper
         private IADLXManualFanTuningStateList _list;
         private IADLXManualFanTuningState[] _states;
         private SWIGTYPE_p_int _intPtr = ADLX.new_intP();
-        private bool _supportsTargetFanSpeed;
         private readonly IADLXInterface _interface;
 
         public ManualFanTuning(IADLXInterface @interface) : base(ADLX.CastManualFanTuning(@interface))
@@ -35,26 +34,35 @@ namespace ADLXWrapper
             _interface = @interface;
 
             var boolP = ADLX.new_boolP().DisposeWith(ADLX.delete_boolP, Disposable);
-            if (NativeInterface.IsSupportedTargetFanSpeed(boolP) == ADLX_RESULT.ADLX_OK)
-            {
-                _supportsTargetFanSpeed = ADLX.boolP_value(boolP);
-            }
+            SupportsTargetFanSpeed = NativeInterface.IsSupportedTargetFanSpeed(boolP) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(boolP);
+            SupportsZeroRPM = NativeInterface.IsSupportedZeroRPM(boolP) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(boolP);
         }
+
+        public bool SupportsTargetFanSpeed { get; }
+
+        public bool SupportsZeroRPM { get; }
 
         public Range SpeedRange { get; }
 
-        public void SetFanSpeed(int speed)
+        public void SetTargetFanSpeed(int speedRPM)
         {
-            if (_supportsTargetFanSpeed)
-            {
-                NativeInterface.SetTargetFanSpeed(speed).ThrowIfError($"Couldn't set fan speed {speed}");
-                return;
-            }
+            NativeInterface.SetTargetFanSpeed(speedRPM).ThrowIfError($"Couldn't set fan speed {speedRPM} rpm");
+        }
 
+        public void SetFanTuningStates(int speedPercent)
+        {
             for (int i = 0; i < _states.Length; i++)
-                _states[i].SetFanSpeed(speed);
+                _states[i].SetFanSpeed(speedPercent);
 
-            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed {speed}");
+            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed {speedPercent} %");
+        }
+
+        public void SetFanTuningStates(int[] speedPercent)
+        {
+            for (int i = 0; i < _states.Length; i++)
+                _states[i].SetFanSpeed(speedPercent[i]);
+
+            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed {speedPercent} %");
         }
 
         public void SetZeroRPM(bool enabled)
@@ -66,7 +74,6 @@ namespace ADLXWrapper
         {
             var states = _states.Select(x =>
             {
-
                 x.GetFanSpeed(_intPtr).ThrowIfError("Couldn't get control state");
                 return ADLX.intP_value(_intPtr);
             });

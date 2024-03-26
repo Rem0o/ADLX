@@ -35,7 +35,7 @@ namespace ADLXWrapper.TestConsole
                 for (int speed = manualFanTuning.SpeedRange.Min; speed <= manualFanTuning.SpeedRange.Max; speed += manualFanTuning.SpeedRange.Step)
                 {
                     Console.WriteLine($"Setting fan speed {speed}%");
-                    manualFanTuning.SetFanSpeed(speed);
+                    manualFanTuning.SetTargetFanSpeed(speed);
                     await Task.Delay(1000);
                     var fanspeed = metrics.GetFanSpeed();
 

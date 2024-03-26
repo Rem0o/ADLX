@@ -7,36 +7,36 @@ namespace ADLXWrapper
         private SWIGTYPE_p_int _intPtr;
         private SWIGTYPE_p_double _doublePtr;
 
-        public GPUMetrics( IADLXGPUMetrics gpuMetrics ) : base( gpuMetrics )
+        public GPUMetrics(SWIGTYPE_p_p_adlx__IADLXGPUMetrics ptr, SWIGTYPE_p_int intPtr, SWIGTYPE_p_double doublePtr) : base(ADLX.metricsP_Ptr_value(ptr))
         {
-            _intPtr = ADLX.new_intP().DisposeWith( ADLX.delete_intP, Disposable );
-            _doublePtr = ADLX.new_doubleP().DisposeWith( ADLX.delete_doubleP, Disposable );
+            _intPtr = intPtr;
+            _doublePtr = doublePtr;
         }
 
         public int GetFanSpeed()
         {
-            lock ( _intPtr )
+            lock (_intPtr)
             {
-                NativeInterface.GPUFanSpeed( _intPtr );
-                return ADLX.intP_value( _intPtr );
+                NativeInterface.GPUFanSpeed(_intPtr);
+                return ADLX.intP_value(_intPtr);
             }
         }
 
         public double GetHotspotTemperature()
         {
-            lock ( _doublePtr )
+            lock (_doublePtr)
             {
-                NativeInterface.GPUHotspotTemperature( _doublePtr );
-                return ADLX.doubleP_value( _doublePtr );
+                NativeInterface.GPUHotspotTemperature(_doublePtr);
+                return ADLX.doubleP_value(_doublePtr);
             }
         }
 
         public double GetGPUTemperature()
         {
-            lock ( _doublePtr )
+            lock (_doublePtr)
             {
-                NativeInterface.GPUTemperature( _doublePtr );
-                return ADLX.doubleP_value( _doublePtr );
+                NativeInterface.GPUTemperature(_doublePtr);
+                return ADLX.doubleP_value(_doublePtr);
             }
         }
     }
