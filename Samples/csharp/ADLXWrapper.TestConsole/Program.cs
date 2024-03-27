@@ -74,14 +74,14 @@ namespace ADLXWrapper.TestConsole
 
                 var interfacePtr = ADLX.new_adlxInterfaceP_Ptr().DisposeWith(ADLX.delete_adlxInterfaceP_Ptr, disposable);
 
-                if (HasError(tuningServices.GetManualFanTuning(gpu, interfacePtr), "Couldn't get interface"))
+                if (HasError(tuningServices.GetManualFanTuning(gpu, interfacePtr), "Couldn't get manual fan tuning interface"))
                     return;
 
                 var @interface = ADLX.adlxInterfaceP_Ptr_value(interfacePtr).DisposeWith(disposable);
                 var manual = ADLX.CastManualFanTuning(@interface).DisposeWith(disposable);
 
                 var boolPtr = ADLX.new_boolP().DisposeWith(ADLX.delete_boolP, disposable);
-                if (HasError(manual.IsSupportedTargetFanSpeed(boolPtr), "Could not check for is supported"))
+                if (HasError(manual.IsSupportedTargetFanSpeed(boolPtr), "Could not check for target fan speed is supported"))
                     return;
 
                 var isSupported = ADLX.boolP_value(boolPtr);
@@ -94,8 +94,8 @@ namespace ADLXWrapper.TestConsole
 
                 if (isSupported)
                 {
-                    manual.SetTargetFanSpeed(50);
-                    Console.WriteLine("Setting fan speed to 50");
+                    if (!HasError(manual.SetTargetFanSpeed(80), "Couldn't set target fan speed"))
+                        Console.WriteLine("Setting fan speed to 80");
                 }
 
                 var zeroRpmPtr = ADLX.new_boolP().DisposeWith(ADLX.delete_boolP, disposable);
@@ -162,7 +162,7 @@ namespace ADLXWrapper.TestConsole
 
         private static void SetFanSpeed(IADLXManualFanTuning manual, int speed)
         {
-            Console.WriteLine($"Trying to set fan speed to {speed}");
+            Console.WriteLine($"Trying to set fan speed to {speed} using fan states");
             using (var disposable = new CompositeDisposable())
             {
                 var stateListPtr = ADLX.new_fanTuningStateListP_Ptr().DisposeWith(ADLX.delete_fanTuningStateListP_Ptr, disposable);
