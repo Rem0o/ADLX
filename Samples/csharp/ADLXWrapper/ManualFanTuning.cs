@@ -46,7 +46,8 @@ namespace ADLXWrapper
 
         public void SetTargetFanSpeed(int speedRPM)
         {
-            NativeInterface.SetTargetFanSpeed(speedRPM).ThrowIfError($"Couldn't set fan speed {speedRPM} rpm");
+            NativeInterface.SetTargetFanSpeed(speedRPM)
+                .ThrowIfError($"Couldn't set fan speed with targetFanSpeed {speedRPM}, range ({SpeedRange.Min},{SpeedRange.Max})");
         }
 
         public void SetFanTuningStates(int speedPercent)
@@ -54,7 +55,8 @@ namespace ADLXWrapper
             for (int i = 0; i < _states.Length; i++)
                 _states[i].SetFanSpeed(speedPercent);
 
-            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed {speedPercent} %");
+            NativeInterface.SetFanTuningStates(_list)
+                .ThrowIfError($"Couldn't set fan speed with tuning states {speedPercent} %");
         }
 
         public void SetFanTuningStates(int[] speedPercent)
@@ -62,7 +64,19 @@ namespace ADLXWrapper
             for (int i = 0; i < _states.Length; i++)
                 _states[i].SetFanSpeed(speedPercent[i]);
 
-            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed {speedPercent} %");
+            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed with tuning states {speedPercent} %");
+        }
+
+        public void SetFanTuningStates((int temp, int speed)[] states)
+        {
+            for (int i = 0; i < _states.Length; i++)
+            {
+                IADLXManualFanTuningState state = _states[i];
+                state.SetTemperature(states[i].temp);
+                state.SetFanSpeed(states[i].speed);
+            }
+
+            NativeInterface.SetFanTuningStates(_list).ThrowIfError($"Couldn't set fan speed with tuning states {states}");
         }
 
         public void SetZeroRPM(bool enabled)
