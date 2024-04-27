@@ -30,7 +30,7 @@ namespace ADLXWrapper.TestConsole
                     var manual = tuningServices.GetManualFanTuning(gpu).DisposeWith(disposable);
                     var monitor = systemServices.GetPerformanceMonitor().DisposeWith(disposable);
 
-                    foreach (var speed in Enumerable.Range(0, 10).Select(x => x * 10).Reverse())
+                    foreach (var speed in Enumerable.Range(0, 10).Select(x => x * 10))
                     {
                         manual.SetFanTuningStates2(speed);
                         using (var metric = monitor.GetGPUMetrics(gpu))
@@ -43,6 +43,9 @@ namespace ADLXWrapper.TestConsole
 
                         await Task.Delay(1000);
                     }
+
+                    manual.SetFanTuningStates2(40);
+                    manual.Reset();
                 }
             }
         }

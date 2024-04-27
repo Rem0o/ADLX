@@ -7,6 +7,7 @@ namespace ADLXWrapper
     {
         private IADLXManualFanTuningStateList _list;
         private IADLXManualFanTuningState[] _states;
+        private (int t, int s)[] _resetList;
         private SWIGTYPE_p_int _intPtr;
 
         public ManualFanTuning(IADLXInterface @interface) : base(ADLX.CastManualFanTuning(@interface))
@@ -21,6 +22,15 @@ namespace ADLXWrapper
                 var statePtr = ADLX.new_fanTuningStateP_Ptr();
                 _list.At((uint)i, statePtr).ThrowIfError($"Couldn't get state {i}");
                 return ADLX.fanTuningStateP_Ptr_value(statePtr).DisposeInterfaceWith(Disposable);
+            }).ToArray();
+
+            _resetList = _states.Select(x =>
+            {
+                x.GetTemperature(_intPtr);
+                var t = ADLX.intP_value(_intPtr);
+                x.GetFanSpeed(_intPtr);
+                var s = ADLX.intP_value(_intPtr);
+                return (t, s);
             }).ToArray();
 
             var speedRangePtr = ADLX.new_adlx_intRangeP();
@@ -41,6 +51,11 @@ namespace ADLXWrapper
 
         public Range SpeedRange { get; }
 
+        public void Reset()
+        {
+            SetFanTuningStates(_resetList);
+        }
+
         public void SetTargetFanSpeed(int speedRPM)
         {
             NativeInterface.SetTargetFanSpeed(speedRPM)
@@ -58,6 +73,28 @@ namespace ADLXWrapper
 
         public void SetFanTuningStates2(int speedPercent)
         {
+            if (_list.End() == 5)
+            {
+                var statePtr = ADLX.new_fanTuningStateP_Ptr();
+                using (var compositeDisposable = new CompositeDisposable())
+                {
+                    foreach (var i in Enumerable.Range(2, 3))
+                    {
+                        _list.At((uint)i, statePtr);
+                        var state = ADLX.fanTuningStateP_Ptr_value(statePtr).DisposeInterfaceWith(compositeDisposable);
+                        var temp = 90 + ((i - 2) * 5);
+                        state.SetTemperature(temp);
+                        state.SetFanSpeed(100);
+                    }
+
+                    compositeDisposable.Dispose();
+                }
+
+                _list.Remove_Back();
+                _list.Remove_Back();
+                _list.Remove_Back();
+            }
+
             ADLXHelper.SetSpeed(speedPercent, this.NativeInterface, _list).ThrowIfError($"Couldn't set fan speed with tuning states {speedPercent} %");
         }
 
