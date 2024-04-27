@@ -6,8 +6,8 @@ namespace ADLXWrapper
     {
         public GPU(IADLXGPU gpu) : base(gpu)
         {
-            var ptr = ADLX.new_stringP_Ptr().DisposeWith(ADLX.delete_stringP_Ptr, Disposable);
-            var uniqueIdPtr = ADLX.new_intP().DisposeWith(ADLX.delete_intP, Disposable);
+            var ptr = ADLX.new_stringP_Ptr();
+            var uniqueIdPtr = ADLX.new_intP();
             NativeInterface.Name(ptr).ThrowIfError("Couldn't get GPU name");
             Name = ADLX.stringP_Ptr_value(ptr);
             NativeInterface.UniqueId(uniqueIdPtr).ThrowIfError("Couldn't get Unique ID");

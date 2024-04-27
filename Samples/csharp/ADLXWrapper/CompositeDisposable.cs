@@ -5,17 +5,21 @@ namespace ADLXWrapper
 {
     public class CompositeDisposable : IDisposable
     {
-        private readonly List<IDisposable> _disposables = new List<IDisposable>();
+        private readonly Stack<IDisposable> _disposables = new Stack<IDisposable>();
         public CompositeDisposable() { }
 
         public void Add(IDisposable item)
         {
-            _disposables.Add(item);
+            _disposables.Push(item);
         }
 
         public void Dispose()
         {
-            _disposables.ForEach(d => d.Dispose());
+            while (_disposables.Count > 0 && _disposables.Pop() is IDisposable disposable)
+            {
+                disposable.Dispose();
+            }
+
             _disposables.Clear();
         }
     }

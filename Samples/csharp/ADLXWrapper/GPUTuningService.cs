@@ -19,7 +19,7 @@ namespace ADLXWrapper
 
         public ManualFanTuning GetManualFanTuning(GPU gpu)
         {
-            var ptr = ADLX.new_adlxInterfaceP_Ptr().DisposeWith(ADLX.delete_adlxInterfaceP_Ptr, Disposable);
+            var ptr = ADLX.new_adlxInterfaceP_Ptr();
             NativeInterface.GetManualFanTuning(gpu.NativeInterface, ptr);
             var @interface = ADLX.adlxInterfaceP_Ptr_value(ptr).DisposeWith(Disposable);
 

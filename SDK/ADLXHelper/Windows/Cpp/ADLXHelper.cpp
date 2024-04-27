@@ -4,6 +4,7 @@
 //-------------------------------------------------------------------------------------------------
 
 #include "ADLXHelper.h"
+#include "../../../Include/IGPUManualFanTuning.h"
 
 ADLXHelper g_ADLX;
 
@@ -93,6 +94,22 @@ adlx::IADLXSystem* ADLXHelper::GetSystemServices ()
 adlx::IADLMapping* ADLXHelper::GetAdlMapping ()
 {
     return m_pAdlMapping;
+}
+
+ADLX_RESULT ADLXHelper::SetSpeed(int speed, adlx::IADLXManualFanTuning* fanTuning, adlx::IADLXManualFanTuningStateList* list) {
+    
+    adlx::IADLXManualFanTuningStatePtr oneState;
+    ADLX_RESULT result;
+    
+    for (unsigned int i = list->Begin(); i < list->End(); i++) {
+        list->At(i, &oneState);
+        result = oneState->SetFanSpeed(speed);
+        if (!ADLX_SUCCEEDED(result)) {
+            return result;
+        }
+    }
+
+    return fanTuning->SetFanTuningStates(list);
 }
 
 //-------------------------------------------------------------------------------------------------

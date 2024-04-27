@@ -19,6 +19,5 @@ namespace ADLXWrapper
             NativeInterface.Terminate().ThrowIfError("Couldn't terminate ADLX");
             base.Dispose();
         }
-
     }
 }

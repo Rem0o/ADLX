@@ -1786,6 +1786,9 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLXHelper_GetAdlMapping___")]
   public static extern global::System.IntPtr ADLXHelper_GetAdlMapping(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_ADLXHelper_SetSpeed___")]
+  public static extern int ADLXHelper_SetSpeed(int jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_g_ADLX_set___")]
   public static extern void g_ADLX_set(global::System.Runtime.InteropServices.HandleRef jarg1);
 

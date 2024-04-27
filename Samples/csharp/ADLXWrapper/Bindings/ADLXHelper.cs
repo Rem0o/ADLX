@@ -103,6 +103,11 @@ public class ADLXHelper : global::System.IDisposable {
     return ret;
   }
 
+  public static ADLX_RESULT SetSpeed(int speed, IADLXManualFanTuning fanTuning, IADLXManualFanTuningStateList list) {
+    ADLX_RESULT ret = (ADLX_RESULT)ADLXPINVOKE.ADLXHelper_SetSpeed(speed, IADLXManualFanTuning.getCPtr(fanTuning), IADLXManualFanTuningStateList.getCPtr(list));
+    return ret;
+  }
+
 }
 
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\SDK\ADLXHelper\Windows\Cpp\ADLXHelper.h" />
     <ClInclude Include="ADLXCSharpBind_wrap.h" />
+    <ClInclude Include="Extensions.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -161,6 +162,7 @@
     <ClCompile Include="..\..\..\..\SDK\Platform\Windows\WinAPIs.cpp" />
     <ClCompile Include="ADLXCSharpBind_wrap.cxx" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="Extensions.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

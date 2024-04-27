@@ -10,9 +10,9 @@ namespace ADLXWrapper
 
         public PerformanceMonitor(IADLXPerformanceMonitoringServices performanceMonitor) : base(performanceMonitor)
         {
-            _metricPtr = ADLX.new_metricsP_Ptr().DisposeWith(ADLX.delete_metricsP_Ptr, Disposable);
-            _doublePtr = ADLX.new_doubleP().DisposeWith(ADLX.delete_doubleP, Disposable);
-            _intPtr = ADLX.new_intP().DisposeWith(ADLX.delete_intP, Disposable);
+            _metricPtr = ADLX.new_metricsP_Ptr();
+            _doublePtr = ADLX.new_doubleP();
+            _intPtr = ADLX.new_intP();
         }
 
         public GPUMetrics GetGPUMetrics(GPU gpu)

@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../../../Include/ADLX.h"
+#include "../../../Include/IGPUManualFanTuning.h"
 
 class ADLXHelper
 {
@@ -307,6 +308,9 @@ public:
     * @DetailsTable{#include "ADLXHelper/Windows/Cpp/ADLXHelper.h", @ADLX_First_Ver}
     */
     adlx::IADLMapping* GetAdlMapping ();
+
+
+    static ADLX_RESULT SetSpeed(int speed, adlx::IADLXManualFanTuning* fanTuning, adlx::IADLXManualFanTuningStateList* list);
 
 protected:
 

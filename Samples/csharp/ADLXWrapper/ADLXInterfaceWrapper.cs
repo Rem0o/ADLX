@@ -6,7 +6,6 @@ namespace ADLXWrapper
     {
         protected ADLXInterfaceWrapper(T nativeInterface) : base(nativeInterface)
         {
-
         }
 
         public override void Dispose()
