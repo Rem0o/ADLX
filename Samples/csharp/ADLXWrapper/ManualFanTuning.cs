@@ -6,7 +6,6 @@ namespace ADLXWrapper
     public class ManualFanTuning : ADLXInterfaceWrapper<IADLXManualFanTuning>
     {
         private IADLXManualFanTuningStateList _list;
-        private bool _listReduced = false;
         private IADLXManualFanTuningState[] _states;
         private (int t, int s)[] _resetList;
         private bool _resetZeroRPM = false;
@@ -79,48 +78,7 @@ namespace ADLXWrapper
 
         public void SetFanTuningStates2(int speedPercent)
         {
-            if (!_listReduced && speedPercent >= SpeedRange.Min)
-            {
-                ReduceList(speedPercent);
-                return;
-            }
-
             ADLXHelper.SetSpeed(speedPercent, this.NativeInterface, _list).ThrowIfError($"Couldn't set fan speed with tuning states {speedPercent} %");
-        }
-
-        private void ReduceList(int speedPercent)
-        {
-            var statePtr = ADLX.new_fanTuningStateP_Ptr();
-            using (var compositeDisposable = new CompositeDisposable())
-            {
-                foreach (var i in Enumerable.Range(2, 3).Reverse())
-                {
-                    _list.At((uint)i, statePtr);
-                    var stateToIgnore = ADLX.fanTuningStateP_Ptr_value(statePtr).DisposeInterfaceWith(compositeDisposable);
-                    var temp = 90 + ((i - 2) * 5);
-                    stateToIgnore.SetTemperature(temp);
-                    stateToIgnore.SetFanSpeed(100);
-                }
-
-                IADLXManualFanTuningState state;
-
-                _list.At(1, statePtr);
-                state = ADLX.fanTuningStateP_Ptr_value(statePtr).DisposeInterfaceWith(compositeDisposable);
-                state.SetTemperature(85);
-                state.SetFanSpeed(speedPercent);
-
-                _list.At(0, statePtr);
-                state = ADLX.fanTuningStateP_Ptr_value(statePtr).DisposeInterfaceWith(compositeDisposable);
-                state.SetTemperature(80);
-                state.SetFanSpeed(speedPercent);
-
-                NativeInterface.SetFanTuningStates(_list).ThrowIfError("Couldn't set initial fan speed with tuning states {speedPercent} %");
-            }
-
-            _list.Remove_Back();
-            _list.Remove_Back();
-            _list.Remove_Back();
-            _listReduced = true;
         }
 
         public void SetFanTuningStates(int[] speedPercent)
