@@ -5,6 +5,7 @@
 
 %module(directors="1") ADLX
 %{
+
 #include <Windows.h>
 #include "../../../../SDK/Include/ADLXDefines.h"
 #include "../../../../SDK/Include/ICollections.h"
@@ -104,6 +105,10 @@ typedef WCHAR TCHAR;
 %include carrays.i
 %include windows.i
 %include typemaps.i
+%include cs_struct.i
+
+%cs_struct(GPUMetricsStruct, GPUMetricsStruct);
+//%typemap(csclassmodifiers) SWIGTYPE "public partial class"
 
 %include "../../../../SDK/Include/ADLXDefines.h"
 %include "../../../../SDK/Include/ADLXStructures.h"
@@ -134,6 +139,7 @@ using namespace adlx;
 %pointer_functions(ADLX_DISPLAY_SCAN_TYPE, disScanTypeP);
 %pointer_functions(adlx_size, adlx_sizeP);
 %pointer_functions(ADLX_IntRange, adlx_intRangeP);
+
 
 // T** ppointer
 %define %ppointer_functions(TYPE,NAME)
@@ -189,6 +195,5 @@ TYPE2 NAME(TYPE1 x) {
 %ppointer_functions(IADLXManualFanTuningState*, fanTuningStateP_Ptr);
 %ppointer_functions(IADLXGPUMetrics*, metricsP_Ptr);
 %ppointer_functions(adlx_string, stringP_Ptr);
-
 
 %pointer_cast(IADLXInterface*, IADLXManualFanTuning*, CastManualFanTuning);

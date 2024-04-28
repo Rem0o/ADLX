@@ -5,8 +5,11 @@ namespace ADLXWrapper
 {
     public class SystemServices : Wrapper<IADLXSystem>
     {
-        public SystemServices(IADLXSystem iADLXSystem) : base(iADLXSystem)
+        private readonly ADLXHelper _helper;
+
+        public SystemServices(IADLXSystem iADLXSystem, ADLXWrapper aDLXWrapper) : base(iADLXSystem)
         {
+            _helper = aDLXWrapper.NativeInterface;
         }
 
         public IReadOnlyList<GPU> GetGPUs()
@@ -32,7 +35,7 @@ namespace ADLXWrapper
             var ptr = ADLX.new_gpuTuningP_Ptr();
             NativeInterface.GetGPUTuningServices(ptr);
             var tuning = ADLX.gpuTuningP_Ptr_value(ptr);
-            return new GPUTuningService(tuning);
+            return new GPUTuningService(tuning, _helper);
         }
 
         public PerformanceMonitor GetPerformanceMonitor()
@@ -40,7 +43,7 @@ namespace ADLXWrapper
             var ptr = ADLX.new_performanceP_Ptr();
             NativeInterface.GetPerformanceMonitoringServices(ptr);
             var performanceMonitor = ADLX.performanceP_Ptr_value(ptr);
-            return new PerformanceMonitor(performanceMonitor);
+            return new PerformanceMonitor(performanceMonitor, _helper);
         }
     }
 }

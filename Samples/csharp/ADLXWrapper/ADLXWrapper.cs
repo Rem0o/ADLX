@@ -11,7 +11,7 @@ namespace ADLXWrapper
 
         public SystemServices GetSystemServices()
         {
-            return new SystemServices(NativeInterface.GetSystemServices());
+            return new SystemServices(NativeInterface.GetSystemServices(), this);
         }
 
         public override void Dispose()

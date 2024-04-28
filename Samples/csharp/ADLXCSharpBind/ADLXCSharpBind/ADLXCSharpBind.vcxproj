@@ -153,7 +153,6 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\SDK\ADLXHelper\Windows\Cpp\ADLXHelper.h" />
     <ClInclude Include="ADLXCSharpBind_wrap.h" />
-    <ClInclude Include="Extensions.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
@@ -162,7 +161,6 @@
     <ClCompile Include="..\..\..\..\SDK\Platform\Windows\WinAPIs.cpp" />
     <ClCompile Include="ADLXCSharpBind_wrap.cxx" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="Extensions.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -178,6 +176,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">swig.exe -c++ -csharp -namespace ADLXWrapper.Bindings -DSWIG_CSHARP_NO_WSTRING_HELPER -dllimport ADLXCSharpBind -outdir "$(SolutionDir)ADLXWrapper/Bindings" ADLXCSharpBind.i</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename)_wrap.cxx</Outputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cs_struct.i" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

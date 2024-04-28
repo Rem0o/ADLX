@@ -25,10 +25,11 @@ namespace ADLXWrapper.TestConsole
                     var gpus = systemServices.GetGPUs();
                     var gpu = gpus.First().DisposeWith(disposable);
 
-
                     var tuningServices = systemServices.GetGPUTuningService().DisposeWith(disposable);
                     var manual = tuningServices.GetManualFanTuning(gpu).DisposeWith(disposable);
                     var monitor = systemServices.GetPerformanceMonitor().DisposeWith(disposable);
+
+                    var metrics = monitor.GetGPUMetricsStruct(gpu);
 
                     foreach (var speed in Enumerable.Range(0, 10).Select(x => x * 10))
                     {

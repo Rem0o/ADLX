@@ -48,4 +48,7 @@
   <ItemGroup>
     <CustomBuild Include="ADLXCSharpBind.i" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cs_struct.i" />
+  </ItemGroup>
 </Project>

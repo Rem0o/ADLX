@@ -4,8 +4,11 @@ namespace ADLXWrapper
 {
     public class GPUTuningService : ADLXInterfaceWrapper<IADLXGPUTuningServices>
     {
-        public GPUTuningService(IADLXGPUTuningServices services) : base(services)
+        private readonly ADLXHelper helper;
+
+        public GPUTuningService(IADLXGPUTuningServices services, ADLXHelper helper) : base(services)
         {
+            this.helper = helper;
         }
 
         public bool IsManualFanTuningSupported(GPU gpu)
@@ -23,7 +26,7 @@ namespace ADLXWrapper
             NativeInterface.GetManualFanTuning(gpu.NativeInterface, ptr);
             var @interface = ADLX.adlxInterfaceP_Ptr_value(ptr).DisposeWith(Disposable);
 
-            return new ManualFanTuning(@interface);
+            return new ManualFanTuning(@interface, helper);
         }
     }
 }

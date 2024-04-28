@@ -1,6 +1,14 @@
 ﻿using ADLXWrapper.Bindings;
 using System.Linq;
 
+namespace ADLXWrapper.Bindings
+{
+    public partial class IADLXManualFanTuning
+    {
+
+    }
+}
+
 namespace ADLXWrapper
 {
     public class ManualFanTuning : ADLXInterfaceWrapper<IADLXManualFanTuning>
@@ -10,8 +18,9 @@ namespace ADLXWrapper
         private (int t, int s)[] _resetList;
         private bool _resetZeroRPM = false;
         private SWIGTYPE_p_int _intPtr;
+        private readonly ADLXHelper _helper;
 
-        public ManualFanTuning(IADLXInterface @interface) : base(ADLX.CastManualFanTuning(@interface))
+        public ManualFanTuning(IADLXInterface @interface, ADLXHelper helper) : base(ADLX.CastManualFanTuning(@interface))
         {
             var boolP = ADLX.new_boolP();
             SupportsTargetFanSpeed = NativeInterface.IsSupportedTargetFanSpeed(boolP) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(boolP);
@@ -45,6 +54,7 @@ namespace ADLXWrapper
 
             using (ADLX_IntRange speedRange = ADLX.adlx_intRangeP_value(speedRangePtr))
                 SpeedRange = new Range(speedRange);
+            this._helper = helper;
         }
 
         public bool SupportsTargetFanSpeed { get; }
@@ -78,7 +88,7 @@ namespace ADLXWrapper
 
         public void SetFanTuningStates2(int speedPercent)
         {
-            ADLXHelper.SetSpeed(speedPercent, this.NativeInterface, _list).ThrowIfError($"Couldn't set fan speed with tuning states {speedPercent} %");
+            _helper.SetSpeed(this.NativeInterface, speedPercent, _list).ThrowIfError($"Couldn't set fan speed with tuning states {speedPercent} %");
         }
 
         public void SetFanTuningStates(int[] speedPercent)

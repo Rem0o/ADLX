@@ -5,18 +5,23 @@
 
 #include "ADLXHelper.h"
 #include "../../../Include/IGPUManualFanTuning.h"
+#include "../../../Include/IPerformanceMonitoring.h"
+using namespace adlx;
 
 ADLXHelper g_ADLX;
 
 //-------------------------------------------------------------------------------------------------
 //Constructor
 ADLXHelper::ADLXHelper ()
-{}
+{
+    m_metricsPtr = new adlx::IADLXGPUMetrics * ();
+}
 
 //-------------------------------------------------------------------------------------------------
 //Destructor
 ADLXHelper::~ADLXHelper ()
 {
+    delete m_metricsPtr;
     Terminate ();
 }
 
@@ -96,9 +101,8 @@ adlx::IADLMapping* ADLXHelper::GetAdlMapping ()
     return m_pAdlMapping;
 }
 
-ADLX_RESULT ADLXHelper::SetSpeed(int speed, adlx::IADLXManualFanTuning* fanTuning, adlx::IADLXManualFanTuningStateList* list) {
-    
-    adlx::IADLXManualFanTuningStatePtr oneState;
+ADLX_RESULT ADLXHelper::SetSpeed(IADLXManualFanTuning* fanTuning, int speed, adlx::IADLXManualFanTuningStateList* list) {
+   
     ADLX_RESULT result;
     
     for (unsigned int i = list->Begin(); i < list->End(); i++) {
@@ -110,6 +114,21 @@ ADLX_RESULT ADLXHelper::SetSpeed(int speed, adlx::IADLXManualFanTuning* fanTunin
     }
 
     return fanTuning->SetFanTuningStates(list);
+}
+
+ADLX_RESULT ADLXHelper::GetCurrentMetrics(adlx::IADLXPerformanceMonitoringServices* services, adlx::IADLXGPU* gpu, GPUMetricsStruct* metrics) {
+
+    ADLX_RESULT res = ADLX_OK;
+
+    res = services->GetCurrentGPUMetrics(gpu, m_metricsPtr);
+
+    IADLXGPUMetrics* current = *m_metricsPtr;
+
+    res = current->GPUFanSpeed(&metrics->GPUFanSpeed);
+    res = current->GPUHotspotTemperature(&metrics->GPUHotspotTemperature);
+    res = current->GPUTemperature(&metrics->GPUTemperature);
+
+    return res;
 }
 
 //-------------------------------------------------------------------------------------------------
