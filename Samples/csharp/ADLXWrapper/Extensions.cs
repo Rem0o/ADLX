@@ -21,7 +21,7 @@ namespace ADLXWrapper
             return item;
         }
 
-        private static T DisposeWith<T>(this T item, Action<T> _disposeAction, CompositeDisposable compositeDisposable)
+        public static T DisposeWith<T>(this T item, Action<T> _disposeAction, CompositeDisposable compositeDisposable)
         {
             compositeDisposable.Add(new ActionDisposable(() => _disposeAction(item)));
             return item;

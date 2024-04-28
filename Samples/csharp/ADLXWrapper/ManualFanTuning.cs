@@ -1,14 +1,6 @@
 ﻿using ADLXWrapper.Bindings;
 using System.Linq;
 
-namespace ADLXWrapper.Bindings
-{
-    public partial class IADLXManualFanTuning
-    {
-
-    }
-}
-
 namespace ADLXWrapper
 {
     public class ManualFanTuning : ADLXInterfaceWrapper<IADLXManualFanTuning>

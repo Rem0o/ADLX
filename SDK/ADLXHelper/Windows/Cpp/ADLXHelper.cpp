@@ -128,6 +128,8 @@ ADLX_RESULT ADLXHelper::GetCurrentMetrics(adlx::IADLXPerformanceMonitoringServic
     res = current->GPUHotspotTemperature(&metrics->GPUHotspotTemperature);
     res = current->GPUTemperature(&metrics->GPUTemperature);
 
+    current->Release();
+
     return res;
 }
 

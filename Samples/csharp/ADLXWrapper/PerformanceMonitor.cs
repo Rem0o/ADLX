@@ -1,13 +1,5 @@
 ﻿using ADLXWrapper.Bindings;
 
-namespace ADLXWrapper.Bindings
-{
-    public partial class IADLXPerformanceMonitoringServices
-    {
-
-    }
-}
-
 namespace ADLXWrapper
 {
 
@@ -23,7 +15,7 @@ namespace ADLXWrapper
             _metricPtr = ADLX.new_metricsP_Ptr();
             _doublePtr = ADLX.new_doubleP();
             _intPtr = ADLX.new_intP();
-            this._helper = helper;
+            _helper = helper;
         }
 
         public GPUMetrics GetGPUMetrics(GPU gpu)
