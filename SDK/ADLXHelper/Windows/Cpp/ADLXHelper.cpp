@@ -21,7 +21,6 @@ ADLXHelper::ADLXHelper ()
 //Destructor
 ADLXHelper::~ADLXHelper ()
 {
-    delete m_metricsPtr;
     Terminate ();
 }
 
@@ -69,6 +68,8 @@ ADLX_RESULT ADLXHelper::Terminate ()
         m_terminateFn = nullptr;
         adlx_free_library (m_hDLLHandle);
         m_hDLLHandle = nullptr;
+        delete m_metricsPtr;
+        oneState = nullptr;
     }
     return res;
 }
@@ -104,10 +105,11 @@ adlx::IADLMapping* ADLXHelper::GetAdlMapping ()
 ADLX_RESULT ADLXHelper::SetSpeed(IADLXManualFanTuning* fanTuning, int speed, adlx::IADLXManualFanTuningStateList* list) {
    
     ADLX_RESULT result;
-    
     for (unsigned int i = list->Begin(); i < list->End(); i++) {
         list->At(i, &oneState);
         result = oneState->SetFanSpeed(speed);
+        oneState->Release();
+        
         if (!ADLX_SUCCEEDED(result)) {
             return result;
         }

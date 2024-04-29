@@ -46,7 +46,7 @@ namespace ADLXWrapper
 
             using (ADLX_IntRange speedRange = ADLX.adlx_intRangeP_value(speedRangePtr))
                 SpeedRange = new Range(speedRange);
-            this._helper = helper;
+            _helper = helper;
         }
 
         public bool SupportsTargetFanSpeed { get; }

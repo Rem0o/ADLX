@@ -322,7 +322,7 @@ public:
 
 protected:
 
-	adlx::IADLXManualFanTuningStatePtr oneState;
+	adlx::IADLXManualFanTuningState* oneState;
 
 	adlx::IADLXGPUMetrics** m_metricsPtr;
 
