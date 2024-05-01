@@ -692,6 +692,32 @@ public class ADLX {
     return ret;
   }
 
+  public static SWIGTYPE_p_p_adlx__IADLXGPUMetricsList new_gpuMetricsListP_Ptr() {
+    global::System.IntPtr cPtr = ADLXPINVOKE.new_gpuMetricsListP_Ptr();
+    SWIGTYPE_p_p_adlx__IADLXGPUMetricsList ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXGPUMetricsList(cPtr, false);
+    return ret;
+  }
+
+  public static SWIGTYPE_p_p_adlx__IADLXGPUMetricsList copy_gpuMetricsListP_Ptr(IADLXGPUMetricsList value) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.copy_gpuMetricsListP_Ptr(IADLXGPUMetricsList.getCPtr(value));
+    SWIGTYPE_p_p_adlx__IADLXGPUMetricsList ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_adlx__IADLXGPUMetricsList(cPtr, false);
+    return ret;
+  }
+
+  public static void delete_gpuMetricsListP_Ptr(SWIGTYPE_p_p_adlx__IADLXGPUMetricsList obj) {
+    ADLXPINVOKE.delete_gpuMetricsListP_Ptr(SWIGTYPE_p_p_adlx__IADLXGPUMetricsList.getCPtr(obj));
+  }
+
+  public static void gpuMetricsListP_Ptr_assign(SWIGTYPE_p_p_adlx__IADLXGPUMetricsList obj, IADLXGPUMetricsList value) {
+    ADLXPINVOKE.gpuMetricsListP_Ptr_assign(SWIGTYPE_p_p_adlx__IADLXGPUMetricsList.getCPtr(obj), IADLXGPUMetricsList.getCPtr(value));
+  }
+
+  public static IADLXGPUMetricsList gpuMetricsListP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXGPUMetricsList obj) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.gpuMetricsListP_Ptr_value(SWIGTYPE_p_p_adlx__IADLXGPUMetricsList.getCPtr(obj));
+    IADLXGPUMetricsList ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXGPUMetricsList(cPtr, false);
+    return ret;
+  }
+
   public static IADLXManualFanTuning CastManualFanTuning(IADLXInterface x) {
     global::System.IntPtr cPtr = ADLXPINVOKE.CastManualFanTuning(IADLXInterface.getCPtr(x));
     IADLXManualFanTuning ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXManualFanTuning(cPtr, false);

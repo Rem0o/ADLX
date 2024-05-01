@@ -129,6 +129,7 @@ using namespace adlx;
 
 // T* pointer
 %include cpointer.i
+
 %pointer_functions(adlx_int, intP);
 %pointer_functions(double, doubleP);
 %pointer_functions(bool, boolP);
@@ -140,39 +141,25 @@ using namespace adlx;
 %pointer_functions(adlx_size, adlx_sizeP);
 %pointer_functions(ADLX_IntRange, adlx_intRangeP);
 
+// T** pointers
+%pointer_functions(IADLXDisplayServices*, displaySerP_Ptr);
+%pointer_functions(IADLXDisplayList*, displayListP_Ptr);
+%pointer_functions(IADLXDisplay*, displayP_Ptr);
+%pointer_functions(IADLXDisplayChangedHandling*, displayChangeHandlP_Ptr);
+%pointer_functions(IADLXGPU*, gpuP_Ptr);
+%pointer_functions(IADLXGPUList*, gpuListP_Ptr);
+%pointer_functions(IADLXList*, adlxListP_Ptr);
+%pointer_functions(IADLXInterface*, adlxInterfaceP_Ptr);
+%pointer_functions(IADLXGPUTuningServices*, gpuTuningP_Ptr);
+%pointer_functions(IADLXManualFanTuning*, manualFanTuningP_Ptr);
+%pointer_functions(IADLXPerformanceMonitoringServices*, performanceP_Ptr);
+%pointer_functions(IADLXManualFanTuningStateList*, fanTuningStateListP_Ptr);
+%pointer_functions(IADLXManualFanTuningState*, fanTuningStateP_Ptr);
+%pointer_functions(IADLXGPUMetrics*, metricsP_Ptr);
+%pointer_functions(adlx_string, stringP_Ptr);
+%pointer_functions(IADLXGPUMetricsList*, gpuMetricsListP_Ptr);
 
-// T** ppointer
-%define %ppointer_functions(TYPE,NAME)
-%{
-static TYPE *new_##NAME() { %}
-%{  return new TYPE(); %}
-%{}
-
-static TYPE *copy_##NAME(TYPE value) { %}
-%{  return new TYPE(value); %}
-%{}
-
-static void delete_##NAME(TYPE *obj) { %}
-%{  if (*obj) delete *obj; %}
-%{}
-
-static void NAME ##_assign(TYPE *obj, TYPE value) {
-  *obj = value;
-}
-
-static TYPE NAME ##_value(TYPE *obj) {
-  return *obj;
-}
-%}
-
-TYPE *new_##NAME();
-TYPE *copy_##NAME(TYPE value);
-void  delete_##NAME(TYPE *obj);
-void  NAME##_assign(TYPE *obj, TYPE value);
-TYPE  NAME##_value(TYPE *obj);
-
-%enddef
-
+// Interface cast
 %define %pointer_cast(TYPE1,TYPE2,NAME)
 %inline %{
 TYPE2 NAME(TYPE1 x) {
@@ -180,20 +167,5 @@ TYPE2 NAME(TYPE1 x) {
 }
 %}
 %enddef
-%ppointer_functions(IADLXDisplayServices*, displaySerP_Ptr);
-%ppointer_functions(IADLXDisplayList*, displayListP_Ptr);
-%ppointer_functions(IADLXDisplay*, displayP_Ptr);
-%ppointer_functions(IADLXDisplayChangedHandling*, displayChangeHandlP_Ptr);
-%ppointer_functions(IADLXGPU*, gpuP_Ptr);
-%ppointer_functions(IADLXGPUList*, gpuListP_Ptr);
-%ppointer_functions(IADLXList*, adlxListP_Ptr);
-%ppointer_functions(IADLXInterface*, adlxInterfaceP_Ptr);
-%ppointer_functions(IADLXGPUTuningServices*, gpuTuningP_Ptr);
-%ppointer_functions(IADLXManualFanTuning*, manualFanTuningP_Ptr);
-%ppointer_functions(IADLXPerformanceMonitoringServices*, performanceP_Ptr);
-%ppointer_functions(IADLXManualFanTuningStateList*, fanTuningStateListP_Ptr);
-%ppointer_functions(IADLXManualFanTuningState*, fanTuningStateP_Ptr);
-%ppointer_functions(IADLXGPUMetrics*, metricsP_Ptr);
-%ppointer_functions(adlx_string, stringP_Ptr);
 
 %pointer_cast(IADLXInterface*, IADLXManualFanTuning*, CastManualFanTuning);

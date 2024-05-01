@@ -20,12 +20,13 @@ namespace ADLXWrapper
             var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr).DisposeInterfaceWith(Disposable);
 
             List<GPU> gpus = new List<GPU>();
+            SWIGTYPE_p_p_adlx__IADLXGPU gpuPtr = ADLX.new_gpuP_Ptr();
             for (uint i = gpuList.Begin(); i < gpuList.End(); i++)
             {
-                SWIGTYPE_p_p_adlx__IADLXGPU gpuPtr = ADLX.new_gpuP_Ptr();
                 gpuList.At(i, gpuPtr).ThrowIfError($"Couldn't get gpu at index {i}");
                 gpus.Add(new GPU(ADLX.gpuP_Ptr_value(gpuPtr)));
             }
+            ADLX.delete_gpuP_Ptr(gpuPtr);
 
             return gpus;
         }

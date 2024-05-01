@@ -4,29 +4,29 @@ namespace ADLXWrapper
 {
     public class GPUTuningService : ADLXInterfaceWrapper<IADLXGPUTuningServices>
     {
-        private readonly ADLXHelper helper;
+        private readonly ADLXHelper _helper;
 
-        public GPUTuningService(IADLXGPUTuningServices services, ADLXHelper helper) : base(services)
-        {
-            this.helper = helper;
-        }
+        public GPUTuningService(IADLXGPUTuningServices services, ADLXHelper helper) : base(services) => _helper = helper;
 
         public bool IsManualFanTuningSupported(GPU gpu)
         {
-            var ptr = ADLX.new_boolP();
-            NativeInterface.IsSupportedManualFanTuning(gpu.NativeInterface, ptr);
-            var value = ADLX.boolP_value(ptr);
+            var isSupportedPtr = ADLX.new_boolP();
+            NativeInterface.IsSupportedManualFanTuning(gpu.NativeInterface, isSupportedPtr);
+            var value = ADLX.boolP_value(isSupportedPtr);
+            ADLX.delete_boolP(isSupportedPtr);
 
             return value;
         }
 
         public ManualFanTuning GetManualFanTuning(GPU gpu)
         {
-            var ptr = ADLX.new_adlxInterfaceP_Ptr();
-            NativeInterface.GetManualFanTuning(gpu.NativeInterface, ptr);
-            var @interface = ADLX.adlxInterfaceP_Ptr_value(ptr).DisposeWith(Disposable);
+            var interfacePtr = ADLX.new_adlxInterfaceP_Ptr();
+            NativeInterface.GetManualFanTuning(gpu.NativeInterface, interfacePtr);
+            var @interface = ADLX.adlxInterfaceP_Ptr_value(interfacePtr).DisposeWith(Disposable);
+            ADLX.delete_adlxInterfaceP_Ptr(interfacePtr);
+            var fanTuning = ADLX.CastManualFanTuning(@interface);
 
-            return new ManualFanTuning(@interface, helper);
+            return new ManualFanTuning(fanTuning, _helper);
         }
     }
 }

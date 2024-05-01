@@ -320,11 +320,15 @@ public:
 
 	ADLX_RESULT GetCurrentMetrics(adlx::IADLXPerformanceMonitoringServices* services, adlx::IADLXGPU* gpu, GPUMetricsStruct* metricsStruct);
 
+	ADLX_RESULT GetLatestMetricsFromTracking(adlx::IADLXPerformanceMonitoringServices* services, adlx::IADLXGPU* gpu, GPUMetricsStruct* metricsStruct);
+
 protected:
 
-	adlx::IADLXManualFanTuningState* oneState;
+	adlx::IADLXManualFanTuningState* oneState = nullptr;
 
-	adlx::IADLXGPUMetrics** m_metricsPtr;
+	adlx::IADLXGPUMetrics** m_metricsPtr = nullptr;
+
+	adlx::IADLXGPUMetricsList** m_metricsListPtr = nullptr;
 
 	//Handle to the ADLX dll
 	adlx_handle m_hDLLHandle = nullptr;

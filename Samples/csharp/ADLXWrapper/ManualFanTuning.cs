@@ -10,26 +10,30 @@ namespace ADLXWrapper
         private (int t, int s)[] _resetList;
         private bool _resetZeroRPM = false;
         private SWIGTYPE_p_int _intPtr;
+        private SWIGTYPE_p_bool _boolPtr;
         private readonly ADLXHelper _helper;
 
-        public ManualFanTuning(IADLXInterface @interface, ADLXHelper helper) : base(ADLX.CastManualFanTuning(@interface))
+        public ManualFanTuning(IADLXManualFanTuning fanTuning, ADLXHelper helper) : base(fanTuning)
         {
-            var boolP = ADLX.new_boolP();
-            SupportsTargetFanSpeed = NativeInterface.IsSupportedTargetFanSpeed(boolP) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(boolP);
-            SupportsZeroRPM = NativeInterface.IsSupportedZeroRPM(boolP) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(boolP);
+            _boolPtr = ADLX.new_boolP().DisposeWith(ADLX.delete_boolP, Disposable);
+            SupportsTargetFanSpeed = NativeInterface.IsSupportedTargetFanSpeed(_boolPtr) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(_boolPtr);
+            SupportsZeroRPM = NativeInterface.IsSupportedZeroRPM(_boolPtr) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(_boolPtr);
 
-            _intPtr = ADLX.new_intP();
+            _intPtr = ADLX.new_intP().DisposeWith(ADLX.delete_intP, Disposable);
             var listPtr = ADLX.new_fanTuningStateListP_Ptr();
             NativeInterface.GetFanTuningStates(listPtr).ThrowIfError("Couldn't get fan tuning states");
             _list = ADLX.fanTuningStateListP_Ptr_value(listPtr).DisposeInterfaceWith(Disposable);
+            ADLX.delete_fanTuningStateListP_Ptr(listPtr);
+
             _resetZeroRPM = SupportsZeroRPM && GetZeroRPMState();
 
+            var statePtr = ADLX.new_fanTuningStateP_Ptr();
             _states = Enumerable.Range((int)_list.Begin(), (int)(_list.End() - _list.Begin())).Select(i =>
             {
-                var statePtr = ADLX.new_fanTuningStateP_Ptr();
                 _list.At((uint)i, statePtr).ThrowIfError($"Couldn't get state {i}");
                 return ADLX.fanTuningStateP_Ptr_value(statePtr).DisposeInterfaceWith(Disposable);
             }).ToArray();
+            ADLX.delete_fanTuningStateP_Ptr(statePtr);
 
             _resetList = _states.Select(x =>
             {
@@ -46,6 +50,10 @@ namespace ADLXWrapper
 
             using (ADLX_IntRange speedRange = ADLX.adlx_intRangeP_value(speedRangePtr))
                 SpeedRange = new Range(speedRange);
+
+            ADLX.delete_adlx_intRangeP(speedRangePtr);
+            ADLX.delete_adlx_intRangeP(tempRangePtr);
+
             _helper = helper;
         }
 
@@ -121,10 +129,8 @@ namespace ADLXWrapper
 
         public bool GetZeroRPMState()
         {
-            var ptr = ADLX.new_boolP();
-            NativeInterface.GetZeroRPMState(ptr).ThrowIfError("Couldn't get zero RPM state");
-
-            return ADLX.boolP_value(ptr);
+            NativeInterface.GetZeroRPMState(_boolPtr).ThrowIfError("Couldn't get zero RPM state");
+            return ADLX.boolP_value(_boolPtr);
         }
     }
 }
