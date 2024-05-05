@@ -53,6 +53,10 @@ ADLX_RESULT ADLXHelper::Terminate()
 	ADLX_RESULT res = ADLX_OK;
 	if (m_hDLLHandle != nullptr)
 	{
+		delete m_metricsPtr;
+		delete m_metricsListPtr;
+		m_metricsListPtr = nullptr;
+		m_metricsPtr = nullptr;
 		m_ADLXFullVersion = 0;
 		m_ADLXVersion = nullptr;
 		m_pSystemServices = nullptr;
@@ -69,8 +73,6 @@ ADLX_RESULT ADLXHelper::Terminate()
 		m_terminateFn = nullptr;
 		adlx_free_library(m_hDLLHandle);
 		m_hDLLHandle = nullptr;
-		delete m_metricsPtr;
-		delete m_metricsListPtr;
 		oneState = nullptr;
 	}
 	return res;
@@ -142,11 +144,11 @@ ADLX_RESULT ADLXHelper::GetLatestMetricsFromTracking(adlx::IADLXPerformanceMonit
 	ADLX_RESULT res = services->GetGPUMetricsHistory(gpu, 1, 0, m_metricsListPtr);
 	adlx::IADLXGPUMetricsList* list = (*m_metricsListPtr);
 
-	if (list->Size() > 0 && res == ADLX_OK) 
+	if (res == ADLX_OK && list->Size() > 0)
 	{
 		list->At(0, m_metricsPtr);
 	}
-	else 
+	else
 	{
 		res = services->GetCurrentGPUMetrics(gpu, m_metricsPtr);
 	}
