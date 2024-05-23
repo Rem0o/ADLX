@@ -17,7 +17,7 @@ namespace ADLXWrapper
             var gpuListPtr = ADLX.new_gpuListP_Ptr();
             NativeInterface.GetGPUs(gpuListPtr).ThrowIfError("Couldn't get GPU list");
 
-            var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr).DisposeInterfaceWith(Disposable);
+            var gpuList = ADLX.gpuListP_Ptr_value(gpuListPtr);
 
             List<GPU> gpus = new List<GPU>();
             SWIGTYPE_p_p_adlx__IADLXGPU gpuPtr = ADLX.new_gpuP_Ptr();
@@ -27,6 +27,8 @@ namespace ADLXWrapper
                 gpus.Add(new GPU(ADLX.gpuP_Ptr_value(gpuPtr)));
             }
             ADLX.delete_gpuP_Ptr(gpuPtr);
+            gpuList.DisposeInterface();
+            ADLX.delete_gpuListP_Ptr(gpuListPtr);
 
             return gpus;
         }

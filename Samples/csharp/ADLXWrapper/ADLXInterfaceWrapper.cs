@@ -10,7 +10,13 @@ namespace ADLXWrapper
 
         public override void Dispose()
         {
-            NativeInterface.Release();
+            int referenceCount = NativeInterface.Release();
+            if (referenceCount != 1)
+            {
+                string name = typeof(T).Name;
+                throw new ADLXEception($"{name} still has {referenceCount} references.");
+            }
+
             base.Dispose();
         }
     }

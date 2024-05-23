@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ADLXWrapper.TestConsole
 {
@@ -28,54 +29,45 @@ namespace ADLXWrapper.TestConsole
                     var tuningServices = systemServices.GetGPUTuningService().DisposeWith(disposable);
                     var manual = tuningServices.GetManualFanTuning(gpu).DisposeWith(disposable);
                     var monitor = systemServices.GetPerformanceMonitor().DisposeWith(disposable);
-                    //var metrics = monitor.GetGPUMetricsStruct(gpu);
+                    var metrics = monitor.GetGPUMetricsStruct(gpu);
 
-                    if (manual.GetZeroRPMState())
-                        manual.SetZeroRPM(false);
+                    Console.WriteLine($"GPU with name: {gpu.Name}");
+                    Console.WriteLine($"Support target fan speed: {manual.SupportsTargetFanSpeed}");
+                    Console.WriteLine($"Support zero rpm: {manual.SupportsZeroRPM}");
+                    Console.WriteLine($"Speed range: {manual.SpeedRange.Min}-{manual.SpeedRange.Max}");
 
-                    using (monitor.StartTracking(500, 50))
+                    manual.SetZeroRPM(false);
+
+                    if (manual.SpeedRange.Max > 1000 && manual.SupportsTargetFanSpeed)
                     {
-                        await Task.Delay(1000);
-                        foreach (var speed in Enumerable.Range(0, 1000).Select(x => x * 20).Reverse())
+                        foreach (var speed in Enumerable.Range(0, 11).Select(x => x * 10))
                         {
-                            //manual.SetFanTuningStates2(speed);
-                            /*
-                            using (var metric = monitor.GetGPUMetrics(gpu))
-                            {
-                                var gputemp = metric.GetGPUTemperature();
-                                var hotspot = metric.GetHotspotTemperature();
-                                var rpm = metric.GetFanSpeed();
-                                Console.WriteLine($"gpu: {gputemp}, hotspot: {hotspot}, rpm = {rpm}, speed = {speed} %");
-                            }
-                            */
-
-
-                            var metricStruct = monitor.GetGPUMetrics(gpu);
-                            Console.WriteLine($"gpu: {metricStruct.GetGPUTemperature()}, hotspot: {metricStruct.GetHotspotTemperature()}, rpm = {metricStruct.GetFanSpeed()}, speed = {speed} %");
-
-                            metricStruct.Dispose();
-
-                            await Task.Delay(10);
+                            var speedRpm = (speed / 100f) * manual.SpeedRange.Max;
+                            Console.WriteLine($"Setting target fan speed to : {speedRpm} rpm");
+                            manual.SetTargetFanSpeed(Convert.ToInt32(speedRpm));
+                            await Task.Delay(1000);
                         }
-
-
+                    }
+                    else
+                    {
+                        foreach (var speed in Enumerable.Range(0, 11).Select(x => x * 10))
+                        {
+                            Console.WriteLine($"Setting target fan speed to : {speed}");
+                            if (manual.SupportsTargetFanSpeed)
+                            {
+                                manual.SetTargetFanSpeed(speed);
+                            }
+                            else
+                            {
+                                manual.SetFanTuningStates2(speed);
+                            }
+                            await Task.Delay(1000);
+                        }
                     }
 
-                   // manual.SetFanTuningStates2(40);
-                   // manual.Reset();
-
+                    manual.Reset();
                 }
             }
-        }
-
-        private static bool HasError(ADLX_RESULT result, string message)
-        {
-            if (result == ADLX_RESULT.ADLX_OK)
-                return false;
-
-            Console.WriteLine($"ADLX result ({result}): {message}");
-
-            return true;
         }
     }
 }

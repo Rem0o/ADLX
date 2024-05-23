@@ -14,6 +14,12 @@ namespace ADLXWrapper
             return item;
         }
 
+        public static void DisposeInterface<T>(this T item) where T : IADLXInterface
+        {
+            item.Release();
+            item.Dispose();
+        }
+
         public static T DisposeInterfaceWith<T>(this T item, CompositeDisposable compositeDisposable) where T: IADLXInterface
         {
             compositeDisposable.Add(item);
