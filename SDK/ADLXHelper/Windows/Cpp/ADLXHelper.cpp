@@ -139,28 +139,40 @@ ADLX_RESULT ADLXHelper::GetCurrentMetrics(adlx::IADLXPerformanceMonitoringServic
 	return res;
 }
 
-ADLX_RESULT ADLXHelper::GetLatestMetricsFromTracking(adlx::IADLXPerformanceMonitoringServices* services, adlx::IADLXGPU* gpu, GPUMetricsStruct* metrics) {
+ADLX_RESULT ADLXHelper::GetLatestMetricsFromTracking(adlx::IADLXPerformanceMonitoringServices* services, adlx::IADLXGPU* gpu, GPUMetricsStruct* metrics)
+{
+	bool needFallback = true;
 
 	ADLX_RESULT res = services->GetGPUMetricsHistory(gpu, 1, 0, m_metricsListPtr);
-	adlx::IADLXGPUMetricsList* list = (*m_metricsListPtr);
 
-	if (res == ADLX_OK && list->Size() > 0)
+	if (res == ADLX_OK)
 	{
-		list->At(0, m_metricsPtr);
+		adlx::IADLXGPUMetricsList* list = (*m_metricsListPtr);
+		if (list->Size() > 0)
+		{
+			res = list->At(0, m_metricsPtr);
+			if (res == ADLX_OK)
+			{
+				needFallback = false;
+			}
+		}
+
+		list->Release();
 	}
-	else
+
+	if (needFallback)
 	{
 		res = services->GetCurrentGPUMetrics(gpu, m_metricsPtr);
 	}
 
-	IADLXGPUMetrics* current = *m_metricsPtr;
-
-	res = current->GPUFanSpeed(&metrics->GPUFanSpeed);
-	res = current->GPUHotspotTemperature(&metrics->GPUHotspotTemperature);
-	res = current->GPUTemperature(&metrics->GPUTemperature);
-
-	current->Release();
-	list->Release();
+	if (res == ADLX_OK)
+	{
+		IADLXGPUMetrics* current = *m_metricsPtr;
+		res = current->GPUFanSpeed(&metrics->GPUFanSpeed);
+		res = current->GPUHotspotTemperature(&metrics->GPUHotspotTemperature);
+		res = current->GPUTemperature(&metrics->GPUTemperature);
+		current->Release();
+	}
 
 	return res;
 }
