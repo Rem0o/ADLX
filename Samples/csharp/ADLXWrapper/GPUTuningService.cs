@@ -22,11 +22,10 @@ namespace ADLXWrapper
         {
             var interfacePtr = ADLX.new_adlxInterfaceP_Ptr();
             NativeInterface.GetManualFanTuning(gpu.NativeInterface, interfacePtr);
-            var @interface = ADLX.adlxInterfaceP_Ptr_value(interfacePtr).DisposeWith(Disposable);
+            var @interface = ADLX.adlxInterfaceP_Ptr_value(interfacePtr);
             ADLX.delete_adlxInterfaceP_Ptr(interfacePtr);
-            var fanTuning = ADLX.CastManualFanTuning(@interface);
 
-            return new ManualFanTuning(fanTuning, _helper);
+            return new ManualFanTuning(@interface, _helper);
         }
     }
 }

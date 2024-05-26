@@ -2191,8 +2191,8 @@ class ADLXPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_gpuMetricsListP_Ptr_value___")]
   public static extern global::System.IntPtr gpuMetricsListP_Ptr_value(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_CastManualFanTuning___")]
-  public static extern global::System.IntPtr CastManualFanTuning(global::System.Runtime.InteropServices.HandleRef jarg1);
+  [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_CastManualFanTuningVoidPtr___")]
+  public static extern global::System.IntPtr CastManualFanTuningVoidPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("ADLXCSharpBind", EntryPoint="CSharp_ADLXWrapperfBindings_IADLXList_SWIGUpcast___")]
   public static extern global::System.IntPtr IADLXList_SWIGUpcast(global::System.IntPtr jarg1);

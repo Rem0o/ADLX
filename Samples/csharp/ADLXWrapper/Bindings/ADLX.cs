@@ -718,9 +718,9 @@ public class ADLX {
     return ret;
   }
 
-  public static IADLXManualFanTuning CastManualFanTuning(IADLXInterface x) {
-    global::System.IntPtr cPtr = ADLXPINVOKE.CastManualFanTuning(IADLXInterface.getCPtr(x));
-    IADLXManualFanTuning ret = (cPtr == global::System.IntPtr.Zero) ? null : new IADLXManualFanTuning(cPtr, false);
+  public static SWIGTYPE_p_p_void CastManualFanTuningVoidPtr(SWIGTYPE_p_p_adlx__IADLXManualFanTuning x) {
+    global::System.IntPtr cPtr = ADLXPINVOKE.CastManualFanTuningVoidPtr(SWIGTYPE_p_p_adlx__IADLXManualFanTuning.getCPtr(x));
+    SWIGTYPE_p_p_void ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_p_void(cPtr, false);
     return ret;
   }
 

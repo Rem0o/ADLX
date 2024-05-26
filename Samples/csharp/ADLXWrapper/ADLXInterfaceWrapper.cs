@@ -1,4 +1,5 @@
 ﻿using ADLXWrapper.Bindings;
+using System;
 
 namespace ADLXWrapper
 {
@@ -10,6 +11,30 @@ namespace ADLXWrapper
 
         public override void Dispose()
         {
+            int referenceCount = NativeInterface.Release();
+            if (referenceCount != 1)
+            {
+                string name = typeof(T).Name;
+                throw new ADLXEception($"{name} still has {referenceCount} references.");
+            }
+
+            base.Dispose();
+        }
+    }
+
+    public abstract class ADLXInterfaceQueryWrapper<T> : Wrapper<T> where T : IADLXInterface
+    {
+        private readonly IADLXInterface _nativeInterface;
+
+        protected ADLXInterfaceQueryWrapper(IADLXInterface nativeInterface, Func<IADLXInterface, T> query) : base(query(nativeInterface))
+        {
+            _nativeInterface = nativeInterface.DisposeWith(Disposable);
+        }
+
+        public override void Dispose()
+        {
+            _nativeInterface.Release();
+
             int referenceCount = NativeInterface.Release();
             if (referenceCount != 1)
             {

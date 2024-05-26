@@ -50,7 +50,7 @@ namespace ADLXWrapper.TestConsole
                     }
                     else
                     {
-                        foreach (var speed in Enumerable.Range(0, 11).Select(x => x * 10))
+                        foreach (var speed in Enumerable.Range(0, 8).Select(x => x * 10))
                         {
                             Console.WriteLine($"Setting target fan speed to : {speed}");
                             if (manual.SupportsTargetFanSpeed)

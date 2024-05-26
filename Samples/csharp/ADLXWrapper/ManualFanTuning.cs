@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ADLXWrapper
 {
-    public class ManualFanTuning : ADLXInterfaceWrapper<IADLXManualFanTuning>
+    public class ManualFanTuning : ADLXInterfaceQueryWrapper<IADLXManualFanTuning>
     {
         private IADLXManualFanTuningStateList _list;
         private IADLXManualFanTuningState[] _states;
@@ -11,10 +11,23 @@ namespace ADLXWrapper
         private bool _resetZeroRPM = false;
         private SWIGTYPE_p_int _intPtr;
         private SWIGTYPE_p_bool _boolPtr;
+        private readonly IADLXInterface _interface;
         private readonly ADLXHelper _helper;
 
-        public ManualFanTuning(IADLXManualFanTuning fanTuning, ADLXHelper helper) : base(fanTuning)
+        private static IADLXManualFanTuning QueryManualFanTuning(IADLXInterface @interface)
         {
+            var manualFanTuningPtr = ADLX.new_manualFanTuningP_Ptr();
+            @interface.QueryInterface(IADLXManualFanTuning.IID(), ADLX.CastManualFanTuningVoidPtr(manualFanTuningPtr));
+            var fanTuning = ADLX.manualFanTuningP_Ptr_value(manualFanTuningPtr);
+            ADLX.delete_manualFanTuningP_Ptr(manualFanTuningPtr);
+            return fanTuning;
+        }
+
+        public ManualFanTuning(IADLXInterface @interface, ADLXHelper helper) : base(@interface, QueryManualFanTuning)
+        {
+            _interface = @interface.DisposeWith(Disposable);
+            _helper = helper;
+
             _boolPtr = ADLX.new_boolP().DisposeWith(ADLX.delete_boolP, Disposable);
             SupportsTargetFanSpeed = NativeInterface.IsSupportedTargetFanSpeed(_boolPtr) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(_boolPtr);
             SupportsZeroRPM = NativeInterface.IsSupportedZeroRPM(_boolPtr) == ADLX_RESULT.ADLX_OK && ADLX.boolP_value(_boolPtr);
@@ -53,8 +66,6 @@ namespace ADLXWrapper
 
             ADLX.delete_adlx_intRangeP(speedRangePtr);
             ADLX.delete_adlx_intRangeP(tempRangePtr);
-
-            _helper = helper;
         }
 
         public bool SupportsTargetFanSpeed { get; }

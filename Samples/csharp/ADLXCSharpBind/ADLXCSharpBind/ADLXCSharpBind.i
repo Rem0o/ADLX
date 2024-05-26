@@ -168,4 +168,4 @@ TYPE2 NAME(TYPE1 x) {
 %}
 %enddef
 
-%pointer_cast(IADLXInterface*, IADLXManualFanTuning*, CastManualFanTuning);
+%pointer_cast(IADLXManualFanTuning**, void**, CastManualFanTuningVoidPtr);
