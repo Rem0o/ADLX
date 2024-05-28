@@ -33,9 +33,9 @@ namespace ADLXWrapper
 
         public override void Dispose()
         {
-            _nativeInterface.Release();
+            NativeInterface.Release();
+            int referenceCount = _nativeInterface.Release();
 
-            int referenceCount = NativeInterface.Release();
             if (referenceCount != 1)
             {
                 string name = typeof(T).Name;

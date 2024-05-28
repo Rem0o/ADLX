@@ -11,7 +11,7 @@ namespace ADLXWrapper
         public bool IsManualFanTuningSupported(GPU gpu)
         {
             var isSupportedPtr = ADLX.new_boolP();
-            NativeInterface.IsSupportedManualFanTuning(gpu.NativeInterface, isSupportedPtr);
+            NativeInterface.IsSupportedManualFanTuning(gpu.NativeInterface, isSupportedPtr).ThrowIfError("IsSupportedManualFanTuning");
             var value = ADLX.boolP_value(isSupportedPtr);
             ADLX.delete_boolP(isSupportedPtr);
 
@@ -21,7 +21,7 @@ namespace ADLXWrapper
         public ManualFanTuning GetManualFanTuning(GPU gpu)
         {
             var interfacePtr = ADLX.new_adlxInterfaceP_Ptr();
-            NativeInterface.GetManualFanTuning(gpu.NativeInterface, interfacePtr);
+            NativeInterface.GetManualFanTuning(gpu.NativeInterface, interfacePtr).ThrowIfError("GetManualFanTuning");
             var @interface = ADLX.adlxInterfaceP_Ptr_value(interfacePtr);
             ADLX.delete_adlxInterfaceP_Ptr(interfacePtr);
 

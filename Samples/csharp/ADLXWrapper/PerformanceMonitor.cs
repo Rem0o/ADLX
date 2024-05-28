@@ -35,9 +35,10 @@ namespace ADLXWrapper
         public GPUMetrics GetGPUMetricsFromTracking(GPU gpu)
         {
             NativeInterface.GetGPUMetricsHistory(gpu.NativeInterface, 1, 0, _metricsList).ThrowIfError("Couldn't get GPU metrics history");
-            var list = ADLX.gpuMetricsListP_Ptr_value(_metricsList).DisposeInterfaceWith(Disposable);
-
+            var list = ADLX.gpuMetricsListP_Ptr_value(_metricsList);
             list.At(0, _metricPtr).ThrowIfError("GPUMetricsHistory list at");
+            list.DisposeInterface();
+
             return new GPUMetrics(_metricPtr, _intPtr, _doublePtr);
         }
 

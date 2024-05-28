@@ -57,6 +57,7 @@ ADLX_RESULT ADLXHelper::Terminate()
 		delete m_metricsListPtr;
 		m_metricsListPtr = nullptr;
 		m_metricsPtr = nullptr;
+
 		m_ADLXFullVersion = 0;
 		m_ADLXVersion = nullptr;
 		m_pSystemServices = nullptr;
@@ -127,6 +128,10 @@ ADLX_RESULT ADLXHelper::GetCurrentMetrics(adlx::IADLXPerformanceMonitoringServic
 	ADLX_RESULT res = ADLX_OK;
 
 	res = services->GetCurrentGPUMetrics(gpu, m_metricsPtr);
+	if (res != ADLX_OK) 
+	{
+		return res;
+	}
 
 	IADLXGPUMetrics* current = *m_metricsPtr;
 
