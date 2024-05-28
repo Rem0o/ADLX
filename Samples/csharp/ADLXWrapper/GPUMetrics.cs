@@ -17,7 +17,7 @@ namespace ADLXWrapper
         {
             lock (_intPtr)
             {
-                NativeInterface.GPUFanSpeed(_intPtr);
+                NativeInterface.GPUFanSpeed(_intPtr).ThrowIfError("Get fan speed");
                 return ADLX.intP_value(_intPtr);
             }
         }
@@ -26,7 +26,7 @@ namespace ADLXWrapper
         {
             lock (_doublePtr)
             {
-                NativeInterface.GPUHotspotTemperature(_doublePtr);
+                NativeInterface.GPUHotspotTemperature(_doublePtr).ThrowIfError("Get hot spot");
                 return ADLX.doubleP_value(_doublePtr);
             }
         }
@@ -35,7 +35,7 @@ namespace ADLXWrapper
         {
             lock (_doublePtr)
             {
-                NativeInterface.GPUTemperature(_doublePtr);
+                NativeInterface.GPUTemperature(_doublePtr).ThrowIfError("Get GPU temperature");
                 return ADLX.doubleP_value(_doublePtr);
             }
         }

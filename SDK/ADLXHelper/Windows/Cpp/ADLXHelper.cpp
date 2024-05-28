@@ -109,14 +109,19 @@ adlx::IADLMapping* ADLXHelper::GetAdlMapping()
 
 ADLX_RESULT ADLXHelper::SetSpeed(IADLXManualFanTuning* fanTuning, int speed, adlx::IADLXManualFanTuningStateList* list) {
 
-	ADLX_RESULT result;
-	for (unsigned int i = list->Begin(); i < list->End(); i++) {
-		list->At(i, &oneState);
-		result = oneState->SetFanSpeed(speed);
+	ADLX_RESULT res;
+	for (unsigned int i = list->Begin(); i < list->End(); i++) 
+	{
+		res = list->At(i, &oneState);
+		if (!ADLX_SUCCEEDED(res)) {
+			return res;
+		}
+
+		res = oneState->SetFanSpeed(speed);
 		oneState->Release();
 
-		if (!ADLX_SUCCEEDED(result)) {
-			return result;
+		if (!ADLX_SUCCEEDED(res)) {
+			return res;
 		}
 	}
 
@@ -128,7 +133,7 @@ ADLX_RESULT ADLXHelper::GetCurrentMetrics(adlx::IADLXPerformanceMonitoringServic
 	ADLX_RESULT res = ADLX_OK;
 
 	res = services->GetCurrentGPUMetrics(gpu, m_metricsPtr);
-	if (res != ADLX_OK) 
+	if (!ADLX_SUCCEEDED(res))
 	{
 		return res;
 	}
