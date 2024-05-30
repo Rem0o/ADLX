@@ -17,7 +17,7 @@ namespace ADLXWrapper
         private static IADLXManualFanTuning QueryManualFanTuning(IADLXInterface @interface)
         {
             var manualFanTuningPtr = ADLX.new_manualFanTuningP_Ptr();
-            @interface.QueryInterface(IADLXManualFanTuning.IID(), ADLX.CastManualFanTuningVoidPtr(manualFanTuningPtr));
+            @interface.QueryInterface(IADLXManualFanTuning.IID(), ADLX.CastManualFanTuningVoidPtr(manualFanTuningPtr)).ThrowIfError("Query ManualFanTuning interface");
             var fanTuning = ADLX.manualFanTuningP_Ptr_value(manualFanTuningPtr);
             ADLX.delete_manualFanTuningP_Ptr(manualFanTuningPtr);
             return fanTuning;
