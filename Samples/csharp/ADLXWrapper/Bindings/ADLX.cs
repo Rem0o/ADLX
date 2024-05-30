@@ -38,17 +38,6 @@ public class ADLX {
     return ret;
   }
 
-  public static ADLXHelper g_ADLX {
-    set {
-      ADLXPINVOKE.g_ADLX_set(ADLXHelper.getCPtr(value));
-    } 
-    get {
-      global::System.IntPtr cPtr = ADLXPINVOKE.g_ADLX_get();
-      ADLXHelper ret = (cPtr == global::System.IntPtr.Zero) ? null : new ADLXHelper(cPtr, false);
-      return ret;
-    } 
-  }
-
   public static SWIGTYPE_p_int new_intP() {
     global::System.IntPtr cPtr = ADLXPINVOKE.new_intP();
     SWIGTYPE_p_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_int(cPtr, false);

@@ -16,8 +16,14 @@ namespace ADLXWrapper
 
         public override void Dispose()
         {
-            NativeInterface.Terminate().ThrowIfError("Couldn't terminate ADLX");
-            base.Dispose();
+            try
+            {
+                NativeInterface.Terminate().ThrowIfError("Couldn't terminate ADLX");
+            }
+            finally
+            {
+                base.Dispose();
+            }
         }
     }
 }

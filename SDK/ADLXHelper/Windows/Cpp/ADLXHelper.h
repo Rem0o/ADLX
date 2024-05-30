@@ -324,7 +324,7 @@ public:
 
 protected:
 
-	adlx::IADLXManualFanTuningState* oneState = nullptr;
+	adlx::IADLXManualFanTuningState* m_oneState = nullptr;
 
 	adlx::IADLXGPUMetrics** m_metricsPtr = nullptr;
 
@@ -369,7 +369,5 @@ protected:
 	//Initializes ADLX based on the  parameters
 	ADLX_RESULT InitializePrivate(adlx_handle adlContext, ADLX_ADL_Main_Memory_Free adlMainMemoryFree, adlx_bool useIncompatibleDriver = false);
 }; //class ADLXHelper
-
-extern ::ADLXHelper g_ADLX;
 
 #endif //ADLX_ADLXHelper_h

@@ -8,8 +8,6 @@
 #include "../../../Include/IPerformanceMonitoring.h"
 using namespace adlx;
 
-ADLXHelper g_ADLX;
-
 //-------------------------------------------------------------------------------------------------
 //Constructor
 ADLXHelper::ADLXHelper()
@@ -74,7 +72,7 @@ ADLX_RESULT ADLXHelper::Terminate()
 		m_terminateFn = nullptr;
 		adlx_free_library(m_hDLLHandle);
 		m_hDLLHandle = nullptr;
-		oneState = nullptr;
+		m_oneState = nullptr;
 	}
 	return res;
 }
@@ -110,15 +108,15 @@ adlx::IADLMapping* ADLXHelper::GetAdlMapping()
 ADLX_RESULT ADLXHelper::SetSpeed(IADLXManualFanTuning* fanTuning, int speed, adlx::IADLXManualFanTuningStateList* list) {
 
 	ADLX_RESULT res;
-	for (unsigned int i = list->Begin(); i < list->End(); i++) 
+	for (unsigned int i = list->Begin(); i < list->End(); i++)
 	{
-		res = list->At(i, &oneState);
+		res = list->At(i, &m_oneState);
 		if (!ADLX_SUCCEEDED(res)) {
 			return res;
 		}
 
-		res = oneState->SetFanSpeed(speed);
-		oneState->Release();
+		res = m_oneState->SetFanSpeed(speed);
+		m_oneState->Release();
 
 		if (!ADLX_SUCCEEDED(res)) {
 			return res;
