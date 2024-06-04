@@ -3,7 +3,6 @@ using System;
 
 namespace ADLXWrapper
 {
-
     public class PerformanceMonitor : ADLXInterfaceWrapper<IADLXPerformanceMonitoringServices>
     {
         private readonly ADLXHelper _helper;
@@ -29,7 +28,11 @@ namespace ADLXWrapper
 
             NativeInterface.StartPerformanceMetricsTracking().ThrowIfError("Start performance tracking");
 
-            return new ActionDisposable(() => NativeInterface.StopPerformanceMetricsTracking().ThrowIfError("Couldn't stop performance metrics tracking"));
+            return new ActionDisposable(() =>
+            {
+                NativeInterface.StopPerformanceMetricsTracking().ThrowIfError("Couldn't stop performance metrics tracking");
+                NativeInterface.ClearPerformanceMetricsHistory().ThrowIfError("Clear performance metrics");
+            });
         }
 
         public GPUMetrics GetGPUMetricsFromTracking(GPU gpu)
