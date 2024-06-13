@@ -16,6 +16,7 @@ namespace ADLXWrapper
         public virtual void Dispose()
         {
             Disposable.Dispose();
+            NativeInterface = default;
         }
     }
 }

@@ -55,6 +55,7 @@ ADLX_RESULT ADLXHelper::Terminate()
 		delete m_metricsListPtr;
 		m_metricsListPtr = nullptr;
 		m_metricsPtr = nullptr;
+		m_oneState = nullptr;
 
 		m_ADLXFullVersion = 0;
 		m_ADLXVersion = nullptr;
@@ -72,7 +73,6 @@ ADLX_RESULT ADLXHelper::Terminate()
 		m_terminateFn = nullptr;
 		adlx_free_library(m_hDLLHandle);
 		m_hDLLHandle = nullptr;
-		m_oneState = nullptr;
 	}
 	return res;
 }
