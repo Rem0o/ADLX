@@ -151,15 +151,15 @@ ADLX_RESULT ADLXHelper::GetLatestMetricsFromTracking(adlx::IADLXPerformanceMonit
 {
 	bool needFallback = true;
 
-	ADLX_RESULT res = services->GetGPUMetricsHistory(gpu, 1, 0, m_metricsListPtr);
+	ADLX_RESULT res = services->GetGPUMetricsHistory(gpu, 0, 0, m_metricsListPtr);
 
-	if (res == ADLX_OK)
+	if (ADLX_SUCCEEDED(res))
 	{
 		adlx::IADLXGPUMetricsList* list = (*m_metricsListPtr);
 		if (list->Size() > 0)
 		{
 			res = list->At(0, m_metricsPtr);
-			if (res == ADLX_OK)
+			if (ADLX_SUCCEEDED(res))
 			{
 				needFallback = false;
 			}
@@ -173,7 +173,7 @@ ADLX_RESULT ADLXHelper::GetLatestMetricsFromTracking(adlx::IADLXPerformanceMonit
 		res = services->GetCurrentGPUMetrics(gpu, m_metricsPtr);
 	}
 
-	if (res == ADLX_OK)
+	if (ADLX_SUCCEEDED(res))
 	{
 		IADLXGPUMetrics* current = *m_metricsPtr;
 		res = current->GPUFanSpeed(&metrics->GPUFanSpeed);

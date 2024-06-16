@@ -45,6 +45,15 @@ namespace ADLXWrapper
             return new GPUMetrics(_metricPtr, _intPtr, _doublePtr);
         }
 
+        public Range GetHistorySizeRange()
+        {
+            using (ADLX_IntRange range = new ADLX_IntRange())
+            {
+                NativeInterface.GetMaxPerformanceMetricsHistorySizeRange(range);
+                return new Range(range);
+            }
+        }
+
         public GPUMetrics GetGPUMetrics(GPU gpu)
         {
             NativeInterface.GetCurrentGPUMetrics(gpu.NativeInterface, _metricPtr);

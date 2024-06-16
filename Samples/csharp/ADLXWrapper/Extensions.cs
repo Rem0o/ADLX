@@ -20,7 +20,7 @@ namespace ADLXWrapper
             item.Dispose();
         }
 
-        public static T DisposeInterfaceWith<T>(this T item, CompositeDisposable compositeDisposable) where T: IADLXInterface
+        public static T DisposeInterfaceWith<T>(this T item, CompositeDisposable compositeDisposable) where T : IADLXInterface
         {
             compositeDisposable.Add(item);
             compositeDisposable.Add(new ActionDisposable(() => item.Release()));
@@ -35,7 +35,7 @@ namespace ADLXWrapper
 
         public static void ThrowIfError(this ADLX_RESULT result, string message)
         {
-            if (result != ADLX_RESULT.ADLX_OK)
+            if (result != ADLX_RESULT.ADLX_OK && result != ADLX_RESULT.ADLX_ALREADY_ENABLED && result != ADLX_RESULT.ADLX_ALREADY_INITIALIZED)
             {
                 throw new ADLXEception($"Result: {result} {Environment.NewLine}{message}");
             }
